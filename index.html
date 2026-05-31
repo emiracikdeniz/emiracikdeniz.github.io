@@ -187,7 +187,8 @@ img { max-width: 100%; border-radius: 8px; margin-top: 15px; max-height: 400px; 
 <script type="module">
 // FİREBASE MODÜLLERİ
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getDatabase, ref, set, get, child, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+import { getDatabase, ref, set, get, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 
 // FİREBASE BAĞLANTISI
 const firebaseConfig = {
@@ -202,6 +203,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+const storage = getStorage(app);
 
 // SİBER DEPOLAMA (Global Değişkenler)
 window.currentUser = localStorage.getItem('siberUser') || "";
@@ -213,7 +215,7 @@ window.siberUsers = {};
 window.siberPosts = [];
 window.siberPoll = null;
 
-// FİREBASE CANLI DİNLEYİCİLER (Veritabanı değiştikçe ekranı anında günceller)
+// FİREBASE CANLI DİNLEYİCİLER
 onValue(ref(db, 'users'), (snapshot) => {
     window.siberUsers = snapshot.val() || {};
     window.updateUserUI();
@@ -282,9 +284,7 @@ window.register = function() {
     if(u.toLowerCase() === "emir") return alert("Bu isim merkez tarafından rezerve edilmiştir!");
     if(window.siberUsers[u]) return alert("Bu siber kullanıcı adı zaten alınmış!");
     
-    // Firebase'e kaydet
     set(ref(db, 'users/' + u), { password: p, badges: [] });
-    
     alert("Siber kayıt başarılı! Giriş yapabilirsiniz.");
     document.getElementById('passwordInput').value = "";
 }
@@ -334,14 +334,12 @@ window.logout = function() {
 window.deleteSelfAccount = function() {
     if(!window.currentUser || window.isAdmin) return;
     if(confirm("⚠️ Siber hesabını, tüm rozetlerini kalıcı olarak imha etmek istediğinden emin misin?")) {
-        // Postlardaki beğenileri temizle
         window.siberPosts.forEach(post => {
             if(post.likes && post.likes.includes(window.currentUser)) {
                 let updatedLikes = post.likes.filter(u => u !== window.currentUser);
                 set(ref(db, 'posts/' + post.id + '/likes'), updatedLikes);
             }
         });
-        // Firebase'den kullanıcıyı sil
         remove(ref(db, 'users/' + window.currentUser));
         alert("Siber hesabın imha edildi.");
         window.logout();
@@ -431,14 +429,12 @@ window.fillUserSelectBox = function() {
 window.assignHero = function() {
     let selectedUser = document.getElementById('userSelectBox').value;
     if(!selectedUser) return;
-    // Önce herkesin kahraman rozetini al
     Object.keys(window.siberUsers).forEach(u => {
         if(window.siberUsers[u].badges) {
             let newBadges = window.siberUsers[u].badges.filter(b => b !== "kahraman");
             set(ref(db, 'users/' + u + '/badges'), newBadges);
         }
     });
-    // Yeni kahramana ekle
     let targetBadges = window.siberUsers[selectedUser].badges || [];
     targetBadges.push("kahraman");
     set(ref(db, 'users/' + selectedUser + '/badges'), targetBadges);
@@ -534,42 +530,68 @@ window.clearPoll = function() {
     alert("Anket kaldırıldı.");
 }
 
-window.addNewPost = function() {
+// ASIL COZUM BURADA: ARTIK DOSYALAR VE RESIMLER STORAGE'A YUKLENIYOR
+window.addNewPost = async function() {
     let title = document.getElementById('postTitle').value.trim();
     let body = document.getElementById('postBody').value.trim();
     let fileInput = document.getElementById('postFile');
     let imageInput = document.getElementById('postImage');
+    
     if(title === "" || body === "") return alert("Eksik bilgi!");
     
-    let fileData = ""; let fileName = ""; let imageData = ""; let fileSize = window.calculatedFileSize;
-    
-    let proceedWithImage = () => {
-        if (imageInput.files && imageInput.files[0]) {
-            let readerImg = new FileReader();
-            readerImg.onload = function(e) { imageData = e.target.result; window.savePost(title, body, fileData, fileName, imageData, fileSize); };
-            readerImg.readAsDataURL(imageInput.files[0]);
-        } else { window.savePost(title, body, fileData, fileName, imageData, fileSize); }
-    };
-    if (fileInput.files && fileInput.files[0]) {
-        let file = fileInput.files[0]; fileName = file.name;
-        let readerFile = new FileReader();
-        readerFile.onload = function(e) { fileData = e.target.result; proceedWithImage(); };
-        readerFile.readAsDataURL(file);
-    } else { proceedWithImage(); }
-}
-
-window.savePost = function(title, body, fileData, fileName, imageData, fileSize) {
     let id = Date.now().toString();
-    let newPost = { id, title, body, fileData, fileName, image: imageData, fileSize: fileSize, likes: [], comments: [], downloads: 0 };
-    
-    set(ref(db, 'posts/' + id), newPost);
-    
-    document.getElementById('postTitle').value = "";
-    document.getElementById('postBody').value = "";
-    document.getElementById('postFile').value = "";
-    document.getElementById('postImage').value = "";
-    window.calculatedFileSize = "";
-    alert("Yeni siber proje bulutta yayınlandı!");
+    let fileUrl = ""; 
+    let fileName = ""; 
+    let imageUrl = ""; 
+    let fileSize = window.calculatedFileSize;
+
+    alert("Siber proje buluta yükleniyor, lütfen bekleyin...");
+
+    try {
+        // 1. Dosya yükleme (Varsa)
+        if (fileInput.files && fileInput.files[0]) {
+            let file = fileInput.files[0];
+            fileName = file.name;
+            let fileStorageRef = sRef(storage, `files/${id}_${fileName}`);
+            let fileSnapshot = await uploadBytes(fileStorageRef, file);
+            fileUrl = await getDownloadURL(fileSnapshot.ref);
+        }
+
+        // 2. Resim yükleme (Varsa)
+        if (imageInput.files && imageInput.files[0]) {
+            let imgFile = imageInput.files[0];
+            let imgStorageRef = sRef(storage, `images/${id}_${imgFile.name}`);
+            let imgSnapshot = await uploadBytes(imgStorageRef, imgFile);
+            imageUrl = await getDownloadURL(imgSnapshot.ref);
+        }
+
+        // 3. Veritabanına Yazma
+        let newPost = { 
+            id, 
+            title, 
+            body, 
+            fileData: fileUrl, // Artık Base64 değil, indirme linki!
+            fileName: fileName, 
+            image: imageUrl,   // Artık Base64 değil, resim linki!
+            fileSize: fileSize, 
+            likes: [], 
+            comments: [], 
+            downloads: 0 
+        };
+        
+        await set(ref(db, 'posts/' + id), newPost);
+        
+        document.getElementById('postTitle').value = "";
+        document.getElementById('postBody').value = "";
+        document.getElementById('postFile').value = "";
+        document.getElementById('postImage').value = "";
+        window.calculatedFileSize = "";
+        alert("Mükemmel! Yeni siber proje bulutta başarıyla yayınlandı!");
+
+    } catch (error) {
+        console.error(error);
+        alert("Siber Bağlantı Hatası: Yükleme sırasında bir problem oluştu!");
+    }
 }
 
 window.loadPosts = function() {
@@ -618,7 +640,7 @@ window.showProjectDetail = function(id) {
     let downloadHtml = "";
     if(post.fileData && post.fileName) {
         let sizeLabel = post.fileSize ? `<span class="size-badge">${post.fileSize}</span>` : "";
-        downloadHtml = `<br><button onclick="window.downloadEmbeddedFile('${post.id}')" class="download-btn">📥 ${post.fileName} İndir</button>${sizeLabel}
+        downloadHtml = `<br><a href="${post.fileData}" target="_blank" onclick="window.incrementDownload('${post.id}')" class="download-btn">📥 ${post.fileName} İndir</a>${sizeLabel}
         <span id="adminCounter" class="admin-counter" style="${window.isAdmin ? 'display:inline-block;' : 'display:none;'}">📊 İndirme Sayısı: ${post.downloads || 0}</span>`;
     }
     
@@ -634,16 +656,11 @@ window.showProjectDetail = function(id) {
     window.loadComments(post);
 }
 
-window.downloadEmbeddedFile = function(id) {
+window.incrementDownload = function(id) {
     let post = window.siberPosts.find(p => p.id === id); 
-    if(!post || !post.fileData) return;
-    
+    if(!post) return;
     let currentDownloads = post.downloads || 0;
     set(ref(db, 'posts/' + id + '/downloads'), currentDownloads + 1);
-    
-    let a = document.createElement("a"); 
-    a.href = post.fileData; a.download = post.fileName;
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
 
 window.likeProject = function(id) {
