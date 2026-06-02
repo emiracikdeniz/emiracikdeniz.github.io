@@ -3,280 +3,578 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emir Talha Açıkdeniz - Global Siber Ağ</title>
+    <title>AÇIKDENİZ NETWORK v3.0 - Siber Komuta Merkezi</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0a0a0c; color: #00ffcc; margin: 0; padding: 40px; padding-bottom: 80px; overflow-x: hidden; }
-        #bg-animation { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; opacity: 0.15; }
-        /* SİBER DUYURU BANDI */
-        .ticker-wrap { width: 100%; background: rgba(255, 0, 127, 0.2); border-bottom: 1px solid #ff007f; overflow: hidden; white-space: nowrap; padding: 8px 0; margin-bottom: 20px; border-radius: 6px; }
-        .ticker-text { display: inline-block; padding-left: 100%; font-weight: bold; color: #fff; text-shadow: 0 0 5px #ff007f; animation: ticker 25s linear infinite; }
-        @keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
-        .header-bar { display: flex; justify-content: space-between; align-items: center; max-width: 850px; margin: 0 auto 20px auto; }
-        .container { max-width: 850px; background: rgba(16, 16, 20, 0.85); padding: 30px; border-radius: 12px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.2); border: 1px solid rgba(0, 255, 204, 0.3); margin-bottom: 25px; margin-left: auto; margin-right: auto; backdrop-filter: blur(5px); }
-        h1 { color: #00ffcc; font-weight: 700; text-shadow: 0 0 10px rgba(0, 255, 204, 0.5); margin-top: 0; }
-        h2 { color: #ff007f; text-shadow: 0 0 8px rgba(255, 0, 127, 0.4); }
-        p { color: #a0aec0; line-height: 1.6; }
-        /* Rozet Tasarımları */
-        .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; margin-right: 5px; margin-top: 5px; border: 1px solid transparent; }
-        .badge-cirak { background: rgba(0, 255, 204, 0.1); border-color: #00ffcc; color: #00ffcc; }
+        /* ==========================================================================
+           1. SİBER TEMA VE ÇEKİRDEK STİLLER (CYBERPUNK CORE)
+           ========================================================================== */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020204;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00ffcc;
+            border-radius: 4px;
+            box-shadow: 0 0 5px #00ffcc;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff007f;
+            box-shadow: 0 0 8px #ff007f;
+        }
+        
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #030305;
+            color: #00ffcc;
+            margin: 0;
+            padding: 40px;
+            padding-bottom: 100px;
+            overflow-x: hidden;
+            user-select: none;
+        }
+        
+        #bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        /* ==========================================================================
+           2. SİBER BİLDİRİM VE MANŞET SİSTEMLERİ
+           ========================================================================== */
+        .ticker-wrap {
+            width: 100%;
+            background: rgba(255, 0, 127, 0.15);
+            border: 1px solid #ff007f;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
+        }
+        .ticker-text {
+            display: inline-block;
+            padding-left: 100%;
+            font-weight: bold;
+            color: #fff;
+            font-size: 1rem;
+            text-shadow: 0 0 8px #ff007f;
+            animation: siberTicker 28s linear infinite;
+        }
+        @keyframes siberTicker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* Siber Toast Bildirimleri */
+        #toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        .cyber-toast {
+            background: #09090e;
+            border-left: 4px solid #00ffcc;
+            color: #fff;
+            padding: 15px 25px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+            animation: slideIn 0.3s ease forwards;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(120%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* ==========================================================================
+           3. UI BİLEŞENLERİ VE PANEL GEOMETRİSİ
+           ========================================================================== */
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 950px;
+            margin: 0 auto 25px auto;
+            border-bottom: 1px dashed rgba(0, 255, 204, 0.3);
+            padding-bottom: 15px;
+        }
+        
+        .container {
+            max-width: 950px;
+            background: rgba(8, 8, 12, 0.92);
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(0, 255, 204, 0.15);
+            border: 1px solid rgba(0, 255, 204, 0.25);
+            margin-bottom: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            backdrop-filter: blur(8px);
+            position: relative;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        h1 { color: #00ffcc; text-shadow: 0 0 12px rgba(0, 255, 204, 0.6); }
+        h2 { color: #ff007f; text-shadow: 0 0 10px rgba(255, 0, 127, 0.5); }
+        h3 { color: #9b00ff; text-shadow: 0 0 8px rgba(155, 0, 255, 0.4); }
+        p { color: #cbd5e0; line-height: 1.7; font-size: 0.95rem; }
+
+        /* Butonlar ve Girdiler */
+        .btn {
+            padding: 12px 24px;
+            background: #00ffcc;
+            color: #000;
+            font-weight: bold;
+            font-family: monospace;
+            border: 1px solid #00ffcc;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+        }
+        .btn:hover {
+            background: #000;
+            color: #00ffcc;
+            box-shadow: 0 0 15px #00ffcc;
+        }
+        .btn-pink {
+            background: #ff007f;
+            border-color: #ff007f;
+            color: #fff;
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
+        }
+        .btn-pink:hover {
+            background: #000;
+            color: #ff007f;
+            box-shadow: 0 0 15px #ff007f;
+        }
+
+        .auth-grid { display: flex; gap: 12px; align-items: center; }
+        .auth-input-style {
+            padding: 8px 14px;
+            border-radius: 4px;
+            border: 1px solid #333;
+            background: #0a0a0f;
+            color: #fff;
+            width: 150px;
+            font-family: monospace;
+            outline: none;
+            transition: border 0.3s;
+        }
+        .auth-input-style:focus { border-color: #00ffcc; }
+
+        .filter-bar { display: flex; gap: 20px; margin-bottom: 30px; }
+        .search-input {
+            flex: 2;
+            padding: 12px 18px;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            background: #07070a;
+            color: #fff;
+            font-family: monospace;
+            font-size: 1rem;
+            outline: none;
+        }
+        .search-input:focus { border-color: #ff007f; box-shadow: 0 0 10px rgba(255,0,127,0.2); }
+        .sort-select {
+            flex: 1;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            background: #07070a;
+            color: #00ffcc;
+            font-family: monospace;
+            font-size: 1rem;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* Rozetler */
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-right: 6px;
+            margin-top: 6px;
+            border: 1px solid transparent;
+            text-transform: uppercase;
+        }
+        .badge-cirak { background: rgba(0, 255, 204, 0.15); border-color: #00ffcc; color: #00ffcc; }
         .badge-deha { background: rgba(155, 0, 255, 0.2); border-color: #9b00ff; color: #d399ff; }
-        .badge-kahraman { background: rgba(255, 215, 0, 0.2); border-color: #ffd700; color: #ffd700; text-shadow: 0 0 5px #ffd700; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; } 100% { opacity: 0.8; } }
-        /* Profil Alanı */
-        .profile-card { background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid rgba(0,255,204,0.1); margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-        /* Giriş Formu Elementleri */
-        .auth-grid { display: flex; gap: 10px; align-items: center; }
-        .auth-input-style { padding: 6px 12px; border-radius: 4px; border: 1px solid #333; background: #111; color: #fff; width: 140px; }
-        /* Arama ve Filtreleme Alanı */
-        .filter-bar { display: flex; gap: 15px; margin-bottom: 25px; }
-        .search-input { flex: 2; padding: 10px 15px; border-radius: 6px; border: 1px solid rgba(0, 255, 204, 0.3); background: #111; color: #fff; font-size: 0.95rem; outline: none; }
-        .sort-select { flex: 1; padding: 10px; border-radius: 6px; border: 1px solid rgba(0, 255, 204, 0.3); background: #111; color: #00ffcc; font-size: 0.95rem; cursor: pointer; }
-        /* Proje Kartları */
-        .project-card { cursor: pointer; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 25px; margin-bottom: 25px; transition: transform 0.2s ease, background 0.2s ease; position: relative; }
-        .project-card:hover { transform: scale(1.01); background: rgba(0, 255, 204, 0.02); }
-        /* Bilgi Yarışması Küpü */
-        .quiz-container { background: rgba(155, 0, 255, 0.05); border: 1px dashed #9b00ff; padding: 20px; border-radius: 8px; margin-bottom: 25px; }
-        .quiz-opt { background: #111; border: 1px solid rgba(155,0,255,0.4); color: #d399ff; padding: 8px 12px; margin: 5px 0; border-radius: 4px; cursor: pointer; width: 100%; text-align: left; }
-        .quiz-opt:hover { background: rgba(155, 0, 255, 0.1); }
-        /* Anket Alanı */
-        .poll-container { border: 1px dashed #00ffcc; background: rgba(0, 255, 204, 0.03); padding: 20px; border-radius: 8px; margin-bottom: 25px; }
-        .poll-option-btn { background: #111; border: 1px solid rgba(0,255,204,0.4); color: #00ffcc; padding: 8px 15px; margin: 5px 0; border-radius: 5px; cursor: pointer; display: block; width: 100%; text-align: left; font-weight: bold; }
-        .poll-option-btn:hover { background: rgba(0, 255, 204, 0.1); }
-        .poll-result-bar { background: rgba(255, 255, 255, 0.05); border-radius: 4px; margin: 8px 0; overflow: hidden; position: relative; height: 24px; border: 1px solid rgba(255,0,127,0.2); }
-        .poll-progress { background: rgba(255, 0, 127, 0.4); height: 100%; transition: width 0.5s ease; }
-        .poll-percent { position: absolute; left: 10px; top: 2px; font-size: 0.85rem; font-weight: bold; color: #fff; }
-        /* Paneller */
-        #adminPanel { display: none; background: #111; border: 1px solid #ff007f; color: #fff; padding: 20px; border-radius: 8px; margin-top: 20px; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; color: #00ffcc; }
-        .form-group input, .form-group textarea { width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #333; background: #222; color: #fff; box-sizing: border-box; }
-        .btn { padding: 10px 20px; background: #00ffcc; color: #000; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; display: inline-block; text-decoration: none; }
-        .btn:hover { background: #00cc99; }
-        .download-btn { background: #00ffcc; color: #0a0a0c; font-weight: bold; padding: 12px 25px; border-radius: 6px; text-decoration: none; display: inline-block; margin-top: 20px; transition: all 0.2s ease; cursor: pointer; }
-        .size-badge { background: rgba(255, 0, 127, 0.2); color: #ff007f; border: 1px solid #ff007f; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; margin-left: 10px; font-weight: bold; }
-        .admin-counter { color: #ff007f; font-weight: bold; font-size: 0.95rem; margin-left: 15px; display: none; }
-        .delete-btn { position: absolute; top: 10px; right: 10px; background: #ff0055; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; display: none; font-weight: bold; }
-        .pin-btn { background: #ff007f; color: white; border: none; padding: 3px 8px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; display: none; margin-left: 10px; }
-        /* Yorum Sistemi */
-        .comments-section { margin-top: 30px; border-top: 1px solid rgba(0, 255, 204, 0.2); padding-top: 20px; }
-        .comment-box { background: rgba(255,255,255,0.03); padding: 12px; border-radius: 6px; margin-bottom: 10px; border-left: 3px solid #ff007f; position: relative; }
-        .comment-pinned { border: 2px solid #ff007f !important; background: rgba(255, 0, 127, 0.05) !important; box-shadow: 0 0 10px rgba(255,0,127,0.2); }
-        .comment-user { color: #00ffcc; font-weight: bold; font-size: 0.95rem; margin-bottom: 4px; display: flex; align-items: center; }
-        .comment-text { color: #e2e8f0; font-size: 0.95rem; padding-right: 120px; }
-        .comment-delete-btn { position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 85, 0.2); color: #ff0055; border: 1px solid #ff0055; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; display: none; }
-        #mainPage, #detailPage { transition: opacity 0.3s ease; }
+        .badge-kahraman { 
+            background: rgba(255, 215, 0, 0.2); 
+            border-color: #ffd700; 
+            color: #ffd700; 
+            text-shadow: 0 0 6px #ffd700;
+            animation: cyberPulse 2s infinite; 
+        }
+        @keyframes cyberPulse {
+            0% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.03); }
+            100% { opacity: 0.8; transform: scale(1); }
+        }
+
+        /* Proje Kart Modülleri */
+        .project-card {
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(20, 20, 25, 0.4);
+            padding: 25px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: #00ffcc;
+            box-shadow: 0 5px 15px rgba(0, 255, 204, 0.1);
+            background: rgba(0, 255, 204, 0.02);
+        }
+        .project-card-mega {
+            border-left: 4px solid #d9272e !important;
+        }
+        
+        /* Mega.nz Buton Mimarisi */
+        .mega-btn {
+            background: #d9272e;
+            color: white;
+            font-weight: bold;
+            padding: 14px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            border: 1px solid #d9272e;
+            box-shadow: 0 0 15px rgba(217, 39, 46, 0.4);
+            font-family: monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+        }
+        .mega-btn:hover {
+            background: #000;
+            color: #d9272e;
+            box-shadow: 0 0 25px rgba(217, 39, 46, 0.7);
+        }
+
+        /* Siber Canlı Log Terminal Penceresi */
+        .terminal-box {
+            background: #020204;
+            border: 1px solid #ff007f;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.8rem;
+            color: #ff007f;
+            max-height: 120px;
+            overflow-y: auto;
+            margin-bottom: 25px;
+            box-shadow: inset 0 0 10px rgba(255, 0, 127, 0.3);
+        }
+        .terminal-line { margin: 4px 0; }
+        .terminal-timestamp { color: #666; margin-right: 8px; }
+        .terminal-success { color: #00ffcc; }
+
+        /* Anket & Quiz Yapıları */
+        .quiz-container { background: rgba(155, 0, 255, 0.04); border: 1px dashed #9b00ff; padding: 25px; border-radius: 8px; margin-bottom: 30px; }
+        .quiz-opt { background: #0b0b0f; border: 1px solid rgba(155,0,255,0.4); color: #d399ff; padding: 12px; margin: 8px 0; border-radius: 4px; cursor: pointer; width: 100%; text-align: left; font-family: monospace; transition: all 0.2s; }
+        .quiz-opt:hover { background: rgba(155, 0, 255, 0.15); border-color: #9b00ff; }
+        
+        .poll-container { border: 1px dashed #00ffcc; background: rgba(0, 255, 204, 0.02); padding: 25px; border-radius: 8px; margin-bottom: 30px; }
+        .poll-option-btn { background: #0b0b0f; border: 1px solid rgba(0,255,204,0.4); color: #00ffcc; padding: 12px; margin: 8px 0; border-radius: 5px; cursor: pointer; display: block; width: 100%; text-align: left; font-weight: bold; font-family: monospace; }
+        .poll-option-btn:hover { background: rgba(0, 255, 204, 0.12); }
+        .poll-result-bar { background: rgba(255, 255, 255, 0.03); border-radius: 4px; margin: 10px 0; overflow: hidden; position: relative; height: 28px; border: 1px solid rgba(255,0,127,0.2); }
+        .poll-progress { background: rgba(255, 0, 127, 0.35); height: 100%; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .poll-percent { position: absolute; left: 12px; top: 5px; font-size: 0.85rem; font-weight: bold; color: #fff; }
+
+        /* Yorumlama Modülü */
+        .comments-section { margin-top: 35px; border-top: 1px solid rgba(0, 255, 204, 0.2); padding-top: 25px; }
+        .comment-box { background: rgba(255,255,255,0.02); padding: 16px; border-radius: 6px; margin-bottom: 12px; border-left: 3px solid #ff007f; position: relative; }
+        .comment-pinned { border: 1px solid #ff007f !important; border-left: 4px solid #ff007f !important; background: rgba(255, 0, 127, 0.04) !important; box-shadow: 0 0 12px rgba(255,0,127,0.15); }
+        .comment-user { color: #00ffcc; font-weight: bold; font-size: 0.95rem; margin-bottom: 6px; display: flex; align-items: center; }
+        .comment-text { color: #e2e8f0; font-size: 0.95rem; padding-right: 140px; word-wrap: break-word; }
+        
+        .delete-btn { position: absolute; top: 15px; right: 15px; background: #ff0055; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; display: none; font-weight: bold; font-family: monospace; }
+        .pin-btn { background: #ff007f; color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; display: none; margin-left: 12px; font-family: monospace; }
+        .comment-delete-btn { position: absolute; top: 15px; right: 15px; background: rgba(255, 0, 85, 0.15); color: #ff0055; border: 1px solid #ff0055; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; display: none; font-family: monospace; }
+
+        #adminPanel { display: none; background: #07070a; border: 1px solid #ff007f; color: #fff; padding: 30px; border-radius: 8px; margin-top: 30px; box-shadow: 0 0 20px rgba(255,0,127,0.15); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: #00ffcc; font-weight: bold; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #333; background: #141419; color: #fff; box-sizing: border-box; font-family: monospace; outline: none; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #00ffcc; }
+
+        #mainPage, #detailPage { transition: opacity 0.2s ease; }
         #detailPage { display: none; }
-        .back-btn { background: #ff007f; color: white; margin-bottom: 20px; }
-        img { max-width: 100%; border-radius: 8px; margin-top: 15px; max-height: 400px; object-fit: cover; border: 1px solid rgba(0, 255, 204, 0.2); }
-        /* SİBER DURUM ÇUBUĞU */
-        .status-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #070709; border-top: 1px solid #00ffcc; color: #a0aec0; display: flex; justify-content: space-around; align-items: center; padding: 8px 0; font-size: 0.85rem; font-family: monospace; z-index: 1000; box-shadow: 0 -5px 15px rgba(0, 255, 204, 0.1); }
-        .status-item { display: flex; align-items: center; gap: 5px; }
+        .back-btn { background: #ff007f; color: white; margin-bottom: 25px; border-color: #ff007f; }
+        .back-btn:hover { color: #ff007f; box-shadow: 0 0 15px #ff007f; }
+        
+        img { max-width: 100%; border-radius: 6px; margin-top: 15px; max-height: 380px; object-fit: cover; border: 1px solid rgba(0, 255, 204, 0.2); }
+        
+        /* ==========================================================================
+           4. SİBER DURUM ÇUBUĞU (STATUS BAR)
+           ========================================================================== */
+        .status-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #030305;
+            border-top: 1px solid #00ffcc;
+            color: #a0aec0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 0.8rem;
+            font-family: monospace;
+            z-index: 1000;
+            box-shadow: 0 -5px 20px rgba(0, 255, 204, 0.15);
+        }
+        .status-item { display: flex; align-items: center; gap: 6px; }
         .status-dot { width: 8px; height: 8px; background-color: #00ffcc; border-radius: 50%; box-shadow: 0 0 8px #00ffcc; animation: statusPulse 2s infinite; }
-        @keyframes statusPulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+        @keyframes statusPulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
     </style>
 </head>
 <body>
+
     <canvas id="bg-animation"></canvas>
-    
+
+    <div id="toast-container"></div>
+
     <div class="ticker-wrap" id="tickerWrapper" style="display: none;">
         <div id="tickerBox" class="ticker-text"></div>
     </div>
-    
+
     <div class="header-bar">
-        <div id="heroTitle" style="font-weight:bold; font-size:1.1rem; color:#ff007f;">⚓ AÇIKDENİZ NETWORK</div>
+        <div id="heroTitle" style="font-weight:bold; font-size:1.2rem; color:#ff007f; text-shadow: 0 0 8px #ff007f;">⚓ AÇIKDENİZ NETWORK II</div>
         <div id="userInfo">
             <div class="auth-grid">
-                <input type="text" id="usernameInput" class="auth-input-style" placeholder="Kullanıcı Adı">
+                <input type="text" id="usernameInput" class="auth-input-style" placeholder="Siber Kimlik">
                 <input type="password" id="passwordInput" class="auth-input-style" placeholder="Siber Şifre">
-                <button class="btn" style="padding: 5px 12px; font-size:0.85rem;" onclick="login()">Giriş</button>
-                <button class="btn" style="padding: 5px 12px; font-size:0.85rem; background:#ff007f; color:white;" onclick="register()">Kayıt Ol</button>
+                <button class="btn" style="padding: 6px 14px; font-size:0.8rem;" onclick="siberLoginEngine()">Bağlan</button>
+                <button class="btn btn-pink" style="padding: 6px 14px; font-size:0.8rem;" onclick="siberRegisterEngine()">Kayıt</button>
             </div>
         </div>
     </div>
-    
+
     <div id="profileSection" class="container" style="display:none;">
-        <div class="profile-card">
+        <div class="profile-card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
             <div>
-                <span style="font-size:1.1rem; font-weight:bold; color:#fff;">👤 Siber Profil: <span id="profileName" style="color:#00ffcc;"></span></span>
+                <span style="font-size:1.1rem; font-weight:bold; color:#fff;">👤 BAĞLI SİBER: <span id="profileName" style="color:#00ffcc;"></span></span>
                 <div id="profileBadges" style="margin-top:5px;"></div>
             </div>
             <div>
-                <button id="selfDeleteBtn" class="btn" style="background:#ff0055; color:white; padding:5px 12px; margin-right:10px; display:none;" onclick="deleteSelfAccount()">Hesabımı Sil</button>
-                <button class="btn" style="background:#333; color:white; padding:5px 12px;" onclick="logout()">Güvenli Çıkış</button>
+                <button id="selfDeleteBtn" class="btn" style="background:#ff0055; color:white; border-color:#ff0055; padding:6px 14px; margin-right:10px; display:none;" onclick="deleteSelfAccount()">Hattı İmha Et</button>
+                <button class="btn" style="background:#222; color:white; border-color:#444; padding:6px 14px;" onclick="siberLogoutEngine()">Güvenli Çıkış</button>
             </div>
         </div>
     </div>
-    
+
     <div id="mainPage" class="container">
-        <h1>Emir Talha Açıkdeniz</h1>
-        <hr style="border: 0; border-top: 1px solid rgba(0, 255, 204, 0.4); margin-bottom: 25px;">
+        <h1>Merkez Veri Terminali</h1>
+        <p>Açıkdeniz siber ağındaki tüm yerel projeler, mega.nz entegrasyonu ile doğrulanmış olarak burada listelenir.</p>
+        <hr style="border: 0; border-top: 1px dashed rgba(0, 255, 204, 0.3); margin-bottom: 25px;">
+        
+        <div class="terminal-box" id="terminalLog">
+            <div class="terminal-line"><span class="terminal-timestamp">[00:00:00]</span><span class="terminal-success">[SİSTEM] Açıkdeniz Güvenli Yerel Hat Çekirdeği Başlatıldı.</span></div>
+        </div>
+
         <div id="quizBlock" class="quiz-container"></div>
         <div id="pollBlock" class="poll-container" style="display: none;"></div>
-        
+
         <div class="filter-bar">
-            <input type="text" id="searchBox" class="search-input" placeholder="Siber arama: Proje veya kelime yazın..." oninput="loadPosts()">
+            <input type="text" id="searchBox" class="search-input" placeholder="Siber dizin taraması yapın..." oninput="loadPosts()">
             <select id="sortBox" class="sort-select" onchange="loadPosts()">
-                <option value="yeni">📅 En Yeni</option>
-                <option value="eski">⏳ En Eski</option>
-                <option value="populer">🔥 Popülerlik (En Çok Beğeni)</option>
+                <option value="yeni">📅 En Yeni Eklenenler</option>
+                <option value="eski">⏳ En Eski Kayıtlar</option>
+                <option value="populer">🔥 Popülerlik Seviyesi</option>
             </select>
         </div>
+        
         <div id="contentList"></div>
     </div>
-    
+
     <div id="detailPage" class="container">
-        <button class="btn back-btn" onclick="navigateToMain()">← Geri Dön</button>
+        <button class="btn back-btn" onclick="navigateToMain()">← Terminal Listesine Dön</button>
         <div id="detailContent"></div>
-        
+
         <div class="comments-section">
-            <h3 style="color: #00ffcc;">💬 Siber Yorumlar</h3>
+            <h3 style="color: #00ffcc;">💬 Terminal Yorum Hattı</h3>
             <div id="commentsList"></div>
-            <div id="commentForm" style="margin-top: 20px;">
-                <p id="commentWarning" style="color: #ff0055; font-weight: bold; display: none;">⚠️ Yorum yapabilmek ve rozet kazanmak için giriş yapmalısınız!</p>
+            
+            <div id="commentForm" style="margin-top: 25px;">
+                <p id="commentWarning" style="color: #ff0055; font-weight: bold; display: none;">⚠️ Yorum hattına paket göndermek için siber kimlik girişi yapmalısınız!</p>
                 <div id="commentInputFields" style="display:none;">
                     <div class="form-group">
-                        <textarea id="newCommentText" rows="3" placeholder="Siber yorumunu buraya yaz..."></textarea>
+                        <textarea id="newCommentText" rows="3" placeholder="Siber veri paketini buraya giriniz..."></textarea>
                     </div>
-                    <button class="btn" onclick="submitComment()">Yorumu Gönder</button>
+                    <button class="btn" onclick="submitComment()">Paketi Gönder</button>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div id="adminPanel" class="container">
-        <h2 style="color: #ff007f; margin-top:0;">⚓ Açıkdeniz Kontrol Paneli</h2>
-        <div class="form-group" style="background:rgba(255,0,127,0.05); padding:12px; border:1px solid #ff007f; border-radius:6px;">
-            <label style="color:#ff007f; font-weight:bold;">📢 Siber Duyuru Geç (Akan Yazı):</label>
-            <input type="text" id="adminTickerInput" placeholder="Sitenin en üstünde akacak haberi buraya yazın...">
-            <button class="btn" style="margin-top:8px; background:#ff007f; color:white;" onclick="updateTicker()">Haber Şeridini Güncelle</button>
-            <button class="btn" style="margin-top:8px; background:#333; color:white;" onclick="clearTicker()">Duyuruyu Tamamen Kaldır</button>
+        <h2>⚓ Kaptan Kontrol İstasyonu</h2>
+        <p style="color:#ff007f;">Sadece "Emir" yetkilerine sahip ana yönetici kimliği bu konsola erişebilir.</p>
+        
+        <div class="form-group" style="background:rgba(255,0,127,0.03); padding:20px; border:1px solid #ff007f; border-radius:6px; margin-bottom:25px;">
+            <label style="color:#ff007f;">📢 Global Akış Duyurusu Geç:</label>
+            <input type="text" id="adminTickerInput" placeholder="Ağ şeridinde akıtılacak ana siber duyuruyu yazın...">
+            <div style="margin-top:12px;">
+                <button class="btn btn-pink" style="padding:8px 16px; font-size:0.85rem;" onclick="updateTicker()">Duyuruyu Enjekte Et</button>
+                <button class="btn" style="padding:8px 16px; font-size:0.85rem; background:#222; color:#fff; border-color:#444;" onclick="clearTicker()">Hattı Temizle</button>
+            </div>
         </div>
-        <br>
+
+        <h3 style="color:#00ffcc;">📂 Yeni Proje Konfigürasyonu Yükle</h3>
         <div class="form-group">
-            <label>Uygulama / Proje Adı:</label>
-            <input type="text" id="postTitle">
-        </div>
-        <div class="form-group">
-            <label>Açıklama / Değişiklik Notları:</label>
-            <textarea id="postBody" rows="5"></textarea>
-        </div>
-        <div class="form-group">
-            <label>Paylaşılacak Bulut Bağlantısı Linki (Mega, MediaFire vb.):</label>
-            <input type="text" id="postFileLink" placeholder="https://mega.nz/...">
+            <label>Proje / Yazılım Adı:</label>
+            <input type="text" id="postTitle" placeholder="Örn: Siber İstihbarat Portalı v1">
         </div>
         <div class="form-group">
-            <label>Dosya Boyutu Raporu (Örn: 15 MB, 512 MB):</label>
-            <input type="text" id="postFileSize" placeholder="512 MB">
+            <label>Proje Açıklaması ve Değişiklik Günlüğü:</label>
+            <textarea id="postBody" rows="5" placeholder="Proje ayrıntılarını buraya girin. Eğer bir dosya yüklemek yerine Mega.nz kullanacaksanız, linki buraya veya aşağıdaki Mega.nz URL alanına ekleyebilirsiniz."></textarea>
+        </div>
+        <div class="form-group" style="border: 1px dashed rgba(255,0,127,0.3); padding:15px; border-radius:4px;">
+            <label style="color:#ff007f;">🔗 MEGA.NZ İNDİRME URL (Önerilen - Sınırsız Boyut):</label>
+            <input type="text" id="postMegaLink" placeholder="https://mega.nz/file/... şeklinde tam paylaşım linki girin">
+        </div>
+        <div class="form-group" style="margin-top:15px;">
+            <label>Yerel Gömülü Dosya Eki (Küçük dosyalar için - İsteğe Bağlı):</label>
+            <input type="file" id="postFile">
         </div>
         <div class="form-group">
-            <label>Proje Kapak Resmi (Dosya veya Link Uzantısı):</label>
+            <label>Proje Arayüz Görseli / Ekran Görüntüsü:</label>
             <input type="file" id="postImage" accept="image/*">
         </div>
-        <button class="btn" onclick="addNewPost()">Sanal Sayfayı Oluştur ve Yayınla</button>
-        
-        <div style="margin-top:25px; padding-top:20px; border-top:1px solid #ff007f;">
-            <h4 style="color:#00ffcc; margin-top:0;">🗳️ Yeni Siber Anket Düzenle</h4>
-            <div class="form-group"><input type="text" id="newPollQuestion" placeholder="Anket Sorusu..."></div>
-            <div class="form-group"><input type="text" id="pollOpt1" placeholder="Seçenek 1"></div>
-            <div class="form-group"><input type="text" id="pollOpt2" placeholder="Seçenek 2"></div>
-            <div class="form-group"><input type="text" id="pollOpt3" placeholder="Seçenek 3 (İsteğe Bağlı)"></div>
-            <button class="btn" style="background:#ff007f; color:#fff;" onclick="setupNewPoll()">Anketi Canlıya Al</button>
-            <button class="btn" style="background:#333; color:#fff;" onclick="clearPoll()">Anketi Tamamen Kaldır</button>
+        <button class="btn" onclick="addNewPost()">Sanal Sayfayı Ağda Canlıya Al</button>
+
+        <div style="margin-top:35px; padding-top:25px; border-top:1px dashed #ff007f;">
+            <h4 style="color:#00ffcc;">🗳️ Yeni Siber Anket Konfigüre Et</h4>
+            <div class="form-group"><input type="text" id="newPollQuestion" placeholder="Anket Sorusu Metni..."></div>
+            <div class="form-group"><input type="text" id="pollOpt1" placeholder="Seçenek Alfa"></div>
+            <div class="form-group"><input type="text" id="pollOpt2" placeholder="Seçenek Beta"></div>
+            <div class="form-group"><input type="text" id="pollOpt3" placeholder="Seçenek Gama (İsteğe Bağlı)"></div>
+            <button class="btn btn-pink" onclick="setupNewPoll()">Anketi Yayına Al</button>
+            <button class="btn" style="background:#222; color:#fff; border-color:#444;" onclick="clearPoll()">Anketi Yok Et</button>
         </div>
-        
-        <div style="margin-top:25px; padding-top:20px; border-top:1px solid #ff007f;">
-            <h4 style="color:#ffd700; margin-top:0;">👥 Siber Kullanıcı Yönetim Terminali</h4>
-            <select id="userSelectBox" class="sort-select" style="max-width:300px; display:inline-block; margin-right:15px;"></select>
-            <button class="btn" style="background:#ffd700; color:#000; margin-right: 10px;" onclick="assignHero()">Haftanın Kahramanı Yap</button>
-            <button class="btn" style="background:#ff0055; color:#fff;" onclick="adminDeleteUser()">Hesabı Siber Hattan Sil</button>
+
+        <div style="margin-top:35px; padding-top:25px; border-top:1px dashed #ff007f;">
+            <h4 style="color:#ffd700;">👥 Siber Operatör Yönetim Konsolu</h4>
+            <select id="userSelectBox" class="sort-select" style="max-width:320px; display:inline-block; margin-right:15px;"></select>
+            <div style="margin-top:12px;">
+                <button class="btn" style="background:#ffd700; color:#000; border-color:#ffd700; padding:8px 16px; font-size:0.85rem; margin-right: 10px;" onclick="assignHero()">Haftanın Kahramanı Ata</button>
+                <button class="btn" style="background:#ff0055; color:#fff; border-color:#ff0055; padding:8px 16px; font-size:0.85rem;" onclick="adminDeleteUser()">Kullanıcıyı Hattan Çıkar</button>
+            </div>
         </div>
     </div>
-    
+
     <div class="status-bar">
-        <div class="status-item"><div class="status-dot"></div> NET_STATUS: CLOUD_ONLINE</div>
-        <div class="status-item">👥 KAYITLI SİBER: <span id="statusUserCount" style="color:#00ffcc; font-weight:bold;">0</span></div>
-        <div class="status-item">📂 PROJELER: <span id="statusProjectCount" style="color:#ff007f; font-weight:bold;">0</span></div>
-        <div class="status-item">👤 AKTİF: <span id="statusCurrentProfile" style="color:#ffd700; font-weight:bold;">ZİYARETÇİ</span></div>
+        <div class="status-item"><div class="status-dot"></div> TELEMETRY: ONLINE</div>
+        <div class="status-item">👥 KAYITLI OPERATÖR: <span id="statusUserCount" style="color:#00ffcc; font-weight:bold;">0</span></div>
+        <div class="status-item">📂 VERİ TABANI PROJE: <span id="statusProjectCount" style="color:#ff007f; font-weight:bold;">0</span></div>
+        <div class="status-item">👤 MEVCUT OTURUM: <span id="statusCurrentProfile" style="color:#ffd700; font-weight:bold;">ZİYARETÇİ_MODU</span></div>
     </div>
 
-    <!-- Firebase Canlı Veri Bağlantı Modülü -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-
-        // ⚠️ BURAYA KENDİ FİREBASE KONSOLUNDAN ALDIĞIN PROJE BİLGİLERİNİ YAPIŞTIR!
-        const firebaseConfig = {
-            apiKey: "AIzaSyA...",
-            authDomain: "projeniz.firebaseapp.com",
-            databaseURL: "https://projeniz-default-rtdb.firebaseio.com",
-            projectId: "projeniz",
-            storageBucket: "projeniz.appspot.com",
-            messagingSenderId: "12345678",
-            appId: "1:12345:web:abcd"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
-        // Global Hafıza Eşitleme Değişkenleri
-        let globalPosts = [];
-        let globalUsers = {};
-        let globalPoll = null;
+    <script>
+        // Çekirdek Durum Değişkenleri (State Machine)
         let currentUser = localStorage.getItem('siberUser') || "";
         let isAdmin = localStorage.getItem('siberAdmin') === "true";
         let activeProjectId = "";
         let calculatedFileSize = "";
+        let currentQuizIndex = 0;
 
-        // SAYFA YÜKLENİRKEN FİREBASE'DEN CANLI VERİ AKIŞINI BAŞLAT
+        // Çoklu Siber Test Soruları Bankası (Geliştirilmiş)
+        const siberQuizBank = [
+            {
+                q: "Web sitemizde verilerin siber hafızada, sunucu olmadan kalıcı saklanmasını sağlayan mimari nedir?",
+                opts: ["A) Bluetooth Core Network Protokolü", "B) LocalStorage Veri Tabanı Mimarisi", "C) Arduino Kısa Devre Modülü"],
+                correct: 1
+            },
+            {
+                q: "Mega.nz üzerinden paylaşılan şifreli büyük dosyaların istemci tarafında kimlik doğrulaması ne ile çözülür?",
+                opts: ["A) URL İçindeki Şifreleme Anahtarı (Hash Fragment)", "B) Firebase Güvenlik Duvarı Kuralları", "C) CSS Transform Keyframe Animasyonu"],
+                correct: 0
+            },
+            {
+                q: "Bir web uygulamasında dışarıdan gelen verilerin kod enjeksiyonu yapmasını engellemek için kullanılan JS metodu hangisidir?",
+                opts: ["A) JSON.stringify() Veri Çevirici", "B) encodeURIComponent() Güvenli Metin Kodlama", "C) Math.random() Dinamik Sayı Motoru"],
+                correct: 1
+            }
+        ];
+
+        // Yerel Veri Deposunun İlk Kurulum Kontrolleri
+        if(!localStorage.getItem('siberUsers')) { localStorage.setItem('siberUsers', JSON.stringify({})); }
+        if(!localStorage.getItem('posts')) { localStorage.setItem('posts', JSON.stringify([])); }
+
+        // DOM Yüklendiğinde Tetiklenecek Başlangıç Rutinleri
         window.addEventListener("DOMContentLoaded", () => {
-            // 1. Canlı Haber Şeridi Dinleyicisi
-            onValue(ref(db, 'ticker'), (snapshot) => {
-                let savedTicker = snapshot.val();
-                if (savedTicker && savedTicker.trim() !== "") {
-                    document.getElementById('tickerBox').innerText = savedTicker;
-                    document.getElementById('tickerWrapper').style.display = 'block';
-                } else {
-                    document.getElementById('tickerWrapper').style.display = 'none';
-                }
-            });
+            logTerminal("Açıkdeniz Network İşletim Çekirdeği yükleniyor...");
+            
+            // Kayıtlı Duyuru Bandı Kontrolü
+            let savedTicker = localStorage.getItem('siberTicker');
+            if (savedTicker && savedTicker.trim() !== "") {
+                document.getElementById('tickerBox').innerText = savedTicker;
+                document.getElementById('tickerWrapper').style.display = 'block';
+            }
 
-            // 2. Canlı Projeler Dinleyicisi
-            onValue(ref(db, 'posts'), (snapshot) => {
-                let data = snapshot.val();
-                globalPosts = [];
-                if (data) {
-                    for (let id in data) {
-                        globalPosts.push(data[id]);
+            // Dosya Boyutu Hesaplama Dinleyicisi
+            let fileInput = document.getElementById('postFile');
+            if(fileInput) {
+                fileInput.addEventListener('change', function() {
+                    if(this.files && this.files[0]) {
+                        let sizeInBytes = this.files[0].size;
+                        if(sizeInBytes > 1024 * 1024) {
+                            calculatedFileSize = (sizeInBytes / (1024 * 1024)).toFixed(2) + " MB";
+                        } else {
+                            calculatedFileSize = (sizeInBytes / 1024).toFixed(2) + " KB";
+                        }
+                        logTerminal(`Dosya tespit edildi: ${this.files[0].name} [${calculatedFileSize}]`);
+                    } else {
+                        calculatedFileSize = "";
                     }
-                }
-                // Raporlama ve sıralama fonksiyonlarını tetikle
-                loadPosts();
-                updateStatusBar();
-                if (window.location.hash.startsWith("#proje-")) {
-                    showProjectDetail(activeProjectId);
-                }
-            });
+                });
+            }
 
-            // 3. Canlı Kullanıcı Dinleyicisi
-            onValue(ref(db, 'users'), (snapshot) => {
-                globalUsers = snapshot.val() || {};
-                updateUserUI();
-                fillUserSelectBox();
-                updateStatusBar();
-                renderQuiz();
-            });
-
-            // 4. Canlı Anket Motoru Dinleyicisi
-            onValue(ref(db, 'poll'), (snapshot) => {
-                globalPoll = snapshot.val();
-                renderPoll();
-            });
-
+            // Çekirdek UI Modüllerini Güncelle ve Yönlendirmeyi Başlat
+            updateUserUI();
             handleRouting();
+            renderPoll();
+            renderQuiz();
+            fillUserSelectBox();
+            updateStatusBar();
+            logTerminal("Sistem stabil. Çevrim içi telemetri aktif.", true);
         });
 
+        // Hash Tabanlı Sayfa Yönlendirme Algoritması (Routing)
         window.addEventListener("hashchange", handleRouting);
-
         function handleRouting() {
             let hash = window.location.hash;
             if (hash.startsWith("#proje-")) {
@@ -287,86 +585,141 @@
             }
         }
 
-        // SİBER KULLANICI UKT SİSTEMLERİ
-        window.register = function() {
-            let u = document.getElementById('usernameInput').value.trim();
-            let p = document.getElementById('passwordInput').value.trim();
-            if(u === "" || p === "") return alert("Kullanıcı adı ve şifre boş bırakılamaz!");
-            if(u.toLowerCase() === "emir") return alert("Bu isim ana merkez tarafından rezerve edilmiştir!");
-            
-            if(globalUsers[u]) return alert("Bu siber kullanıcı adı zaten alınmış!");
-            
-            set(ref(db, 'users/' + u), { password: p, badges: ["yok"] }).then(() => {
-                alert("Siber kayıt bulut sunucusuna işlendi! Giriş yapabilirsiniz.");
-                document.getElementById('passwordInput').value = "";
-            });
-        };
+        // Siber Terminal Loglama Motoru
+        function logTerminal(message, isSuccess = false) {
+            let logBox = document.getElementById('terminalLog');
+            if(!logBox) return;
+            let now = new Date();
+            let timeStr = now.toTimeString().split(' ')[0];
+            let line = document.createElement('div');
+            line.className = 'terminal-line';
+            line.innerHTML = `<span class="terminal-timestamp">[${timeStr}]</span><span class="${isSuccess ? 'terminal-success' : ''}">> ${message}</span>`;
+            logBox.appendChild(line);
+            logBox.scrollTop = logBox.scrollHeight;
+        }
 
-        window.login = function() {
+        // Cyberpunk Toast Bildirim Motoru
+        function showCyberToast(message, type = "info") {
+            let container = document.getElementById('toast-container');
+            if(!container) return;
+            let toast = document.createElement('div');
+            toast.className = 'cyber-toast';
+            if(type === "error") toast.style.borderLeftColor = "#ff0055";
+            if(type === "warning") toast.style.borderLeftColor = "#ffd700";
+            toast.innerText = `[LOG] :: ${message}`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                toast.style.transition = 'all 0.4s ease';
+                setTimeout(() => toast.remove(), 400);
+            }, 4000);
+        }
+
+        // ==========================================================================
+        // 6. KULLANICI HESAP VE GÜVENLİK SİSTEMLERİ (AUTH LOGIC)
+        // ==========================================================================
+        function siberRegisterEngine() {
             let u = document.getElementById('usernameInput').value.trim();
             let p = document.getElementById('passwordInput').value.trim();
-            if(u === "" || p === "") return alert("Giriş alanlarını doldurun!");
+            if(u === "" || p === "") {
+                showCyberToast("Kimlik adı ve şifre boş bırakılarak veri hattı kurulamaz!", "error");
+                return;
+            }
+            if(u.toLowerCase() === "emir") {
+                showCyberToast("Bu kullanıcı adı merkez yöneticisi tarafından bloke edilmiştir!", "error");
+                return;
+            }
+            let users = JSON.parse(localStorage.getItem('siberUsers'));
+            if(users[u]) {
+                showCyberToast("Bu siber kimlik adı ağda zaten tahsis edilmiş!", "warning");
+                return;
+            }
+            users[u] = { password: p, badges: [] };
+            localStorage.setItem('siberUsers', JSON.stringify(users));
+            showCyberToast("Siber kayıt dizine eklendi. Bağlantı kurabilirsiniz.", "info");
+            logTerminal(`Yeni operatör kaydı yapıldı: ${u}`);
+            document.getElementById('passwordInput').value = "";
+            fillUserSelectBox();
+            updateStatusBar();
+        }
+
+        function siberLoginEngine() {
+            let u = document.getElementById('usernameInput').value.trim();
+            let p = document.getElementById('passwordInput').value.trim();
+            if(u === "" || p === "") {
+                showCyberToast("Giriş alanları boş bırakılamaz terminal kilitlendi.", "error");
+                return;
+            }
             
+            // Sabitlenmiş Yönetici Giriş Doğrulaması
             if(u === "Emir" && p === "emir12345.54") {
-                isAdmin = true; currentUser = "Emir (Yönetici)";
+                isAdmin = true;
+                currentUser = "Emir (Yönetici)";
                 localStorage.setItem('siberAdmin', "true");
                 localStorage.setItem('siberUser', currentUser);
-                alert("Ana siber terminal yetkileri bulut üzerinden açıldı.");
+                showCyberToast("Ana siber kontrolör yetkileri başarıyla açıldı.", "info");
+                logTerminal("Yönetici terminal bağlantısı sağlandı.", true);
             } else {
-                if(globalUsers[u] && globalUsers[u].password === p) {
-                    isAdmin = false; currentUser = u;
+                let users = JSON.parse(localStorage.getItem('siberUsers'));
+                if(users[u] && users[u].password === p) {
+                    isAdmin = false;
+                    currentUser = u;
                     localStorage.setItem('siberAdmin', "false");
                     localStorage.setItem('siberUser', currentUser);
-                    alert(`Siber ağ bulutuna bağlanıldı. Hoş geldin, ${u}`);
+                    showCyberToast(`Ağa başarılı bağlantı sağlandı. Hoş geldin: ${u}`, "info");
+                    logTerminal(`Operatör hattı açıldı: ${u}`, true);
                 } else {
-                    return alert("Siber Hata: Geçersiz kullanıcı adı veya şifre!");
+                    showCyberToast("Bağlantı Hatası: Geçersiz kimlik verisi veya şifre frekansı!", "error");
+                    logTerminal(`Hatalı giriş denemesi: ${u}`);
+                    return;
                 }
             }
             document.getElementById('usernameInput').value = "";
             document.getElementById('passwordInput').value = "";
-            updateUserUI(); loadPosts(); renderPoll(); renderQuiz(); updateStatusBar();
-        };
-
-        window.logout = function() {
-            currentUser = ""; isAdmin = false;
-            localStorage.removeItem('siberUser'); localStorage.removeItem('siberAdmin');
-            updateUserUI(); loadPosts(); renderPoll(); renderQuiz(); updateStatusBar();
+            updateUserUI();
+            loadPosts();
+            renderPoll();
+            renderQuiz();
+            fillUserSelectBox();
+            updateStatusBar();
             if(window.location.hash.startsWith("#proje-")) showProjectDetail(activeProjectId);
-        };
+        }
 
-        window.deleteSelfAccount = function() {
+        function siberLogoutEngine() {
+            logTerminal(`Kullanıcı çıkış yaptı: ${currentUser}`);
+            currentUser = "";
+            isAdmin = false;
+            localStorage.removeItem('siberUser');
+            localStorage.removeItem('siberAdmin');
+            showCyberToast("Oturum güvenli bir şekilde kapatıldı ve siber hat temizlendi.");
+            updateUserUI();
+            loadPosts();
+            renderPoll();
+            renderQuiz();
+            updateStatusBar();
+            if(window.location.hash.startsWith("#proje-")) showProjectDetail(activeProjectId);
+        }
+
+        function deleteSelfAccount() {
             if(!currentUser || isAdmin) return;
-            if(confirm("⚠️ Siber hesabını kalıcı olarak imha etmek istediğinden emin misin? Bu işlem geri alınamaz!")) {
-                // Beğenileri temizle
-                globalPosts.forEach(post => {
-                    if(post.likes) {
-                        let updatedLikes = post.likes.filter(u => u !== currentUser);
-                        set(ref(db, `posts/${post.id}/likes`), updatedLikes);
-                    }
+            if(confirm("🚨 Siber hesabını, kazandığın rozetleri ve gönderdiğin tüm veri paketlerini kalıcı olarak imha etmek istiyor musun? Bu işlem geri alınamaz!")) {
+                let users = JSON.parse(localStorage.getItem('siberUsers'));
+                let posts = JSON.parse(localStorage.getItem('posts')) || [];
+                posts.forEach(post => {
+                    if(post.likes) post.likes = post.likes.filter(u => u !== currentUser);
                 });
-                remove(ref(db, 'users/' + currentUser)).then(() => {
-                    alert("Hesabın bulut sisteminden silindi.");
-                    logout();
-                });
+                localStorage.setItem('posts', JSON.stringify(posts));
+                delete users[currentUser];
+                localStorage.setItem('siberUsers', JSON.stringify(users));
+                showCyberToast("Siber hesap ve veri kırıntıları imha edildi.", "warning");
+                siberLogoutEngine();
             }
-        };
+        }
 
-        window.adminDeleteUser = function() {
-            let selectedUser = document.getElementById('userSelectBox').value;
-            if(!selectedUser) return alert("Silinecek bir hesap seçilmedi!");
-            if(confirm(`🚨 ${selectedUser} isimli siber hesabı sistemden tamamen silmek istediğine emin misin Kaptan?`)) {
-                globalPosts.forEach(post => {
-                    if(post.likes) {
-                        let updatedLikes = post.likes.filter(u => u !== selectedUser);
-                        set(ref(db, `posts/${post.id}/likes`), updatedLikes);
-                    }
-                });
-                remove(ref(db, 'users/' + selectedUser)).then(() => {
-                    alert(`${selectedUser} siber hattan tamamen temizlendi.`);
-                });
-            }
-        };
-
+        // ==========================================================================
+        // 7. ARARYÜZ GÜNCELLEME VE ENJEKSİYON MOTORLARI (DOM MODERATION)
+        // ==========================================================================
         function updateUserUI() {
             let userInfo = document.getElementById('userInfo');
             let profileSection = document.getElementById('profileSection');
@@ -382,9 +735,10 @@
                 profileBadges.innerHTML = "";
                 
                 if(isAdmin) {
-                    profileBadges.innerHTML += `<span class="badge badge-kahraman">👑 BAŞ GELİŞTİRİCİ</span>`;
+                    profileBadges.innerHTML += `<span class="badge badge-kahraman">👑 BAŞ GELİŞTİRİCİ / KAPTAN</span>`;
                 } else {
-                    let uData = globalUsers[currentUser];
+                    let users = JSON.parse(localStorage.getItem('siberUsers'));
+                    let uData = users[currentUser];
                     if(uData && uData.badges) {
                         uData.badges.forEach(b => {
                             if(b === "çırak") profileBadges.innerHTML += `<span class="badge badge-cirak">🛠️ Siber Çırak</span>`;
@@ -402,403 +756,698 @@
         }
 
         function updateStatusBar() {
-            let totalUsers = Object.keys(globalUsers).length;
-            let totalProjects = globalPosts.length;
-            document.getElementById('statusUserCount').innerText = totalUsers;
-            document.getElementById('statusProjectCount').innerText = totalProjects;
-            document.getElementById('statusCurrentProfile').innerText = currentUser ? currentUser.toUpperCase() : "ZİYARETÇİ";
+            let users = JSON.parse(localStorage.getItem('siberUsers')) || {};
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            document.getElementById('statusUserCount').innerText = Object.keys(users).length;
+            document.getElementById('statusProjectCount').innerText = posts.length;
+            document.getElementById('statusCurrentProfile').innerText = currentUser ? currentUser.toUpperCase() : "ZİYARETÇİ_MODU";
         }
 
-        window.updateTicker = function() {
-            let text = document.getElementById('adminTickerInput').value.trim();
-            if(text === "") return;
-            set(ref(db, 'ticker'), text).then(() => {
-                document.getElementById('adminTickerInput').value = "";
-                alert("Duyuru siber hatta kilitlendi!");
-            });
-        };
-
-        window.clearTicker = function() {
-            remove(ref(db, 'ticker')).then(() => {
-                alert("Duyuru kaldırıldı.");
-            });
-        };
-
-        function fillUserSelectBox() {
-            let box = document.getElementById('userSelectBox');
-            if(!box) return;
-            box.innerHTML = "";
-            Object.keys(globalUsers).forEach(u => {
-                box.innerHTML += `<option value="${u}">${u}</option>`;
-            });
-        }
-
-        window.assignHero = function() {
-            let selectedUser = document.getElementById('userSelectBox').value;
-            if(!selectedUser) return;
-            
-            Object.keys(globalUsers).forEach(u => {
-                let cleanBadges = (globalUsers[u].badges || []).filter(b => b !== "kahraman");
-                set(ref(db, `users/${u}/badges`), cleanBadges);
-            });
-
-            let activeBadges = globalUsers[selectedUser].badges || [];
-            if(!activeBadges.includes("kahraman")) activeBadges.push("kahraman");
-            set(ref(db, `users/${selectedUser}/badges`), activeBadges).then(() => {
-                alert(`${selectedUser} siber üs tarafından HAFTANIN KAHRAMANI ilan edildi!`);
-            });
-        };
-
-        // BİLGİ YARIŞMASI MANTIĞI
-        window.renderQuiz = function() {
+        // ==========================================================================
+        // 8. İNTERAKTİF SİBER QUIZ VE TEST MOTORU
+        // ==========================================================================
+        function renderQuiz() {
             let qBlock = document.getElementById('quizBlock');
-            if(!currentUser || isAdmin) { qBlock.style.display = 'none'; return; }
+            if(!currentUser || isAdmin) {
+                qBlock.style.display = 'none';
+                return;
+            }
+            let users = JSON.parse(localStorage.getItem('siberUsers'));
+            if(users[currentUser] && users[currentUser].badges.includes("deha")) {
+                qBlock.innerHTML = `<h3 style="color:#9b00ff; margin:0; text-align:center;">🎯 Siber Sınav Tamamlandı: 'Siber Deha' Unvanı Profilinize İşlendi! 🧠</h3>`;
+                qBlock.style.display = 'block';
+                return;
+            }
             
-            let uData = globalUsers[currentUser];
-            if(uData && uData.badges && uData.badges.includes("deha")) {
-                qBlock.innerHTML = `<h3 style="color:#9b00ff; margin:0;">🎯 Siber Quiz: Tebrikler! Tüm testleri çözüp "Siber Deha" unvanını kazandın! 🧠</h3>`;
-                qBlock.style.display = 'block'; return;
-            }
             qBlock.style.display = 'block';
-            qBlock.innerHTML = `<h3 style="color:#9b00ff; margin-top:0;">🧠 Siber Test: Yeteneğini Kanıtla Rozeti Kap!</h3>
-            <p style="font-size:0.95rem; color:#d399ff;">Soru: Web sitemizde verilerin global ağda anlık eşitlenmesini sağlayan bulut mimari altyapısı nedir?</p>
-            <button class="quiz-opt" onclick="checkQuiz(false)">A) LocalStorage Yerel Disk Sistemi</button>
-            <button class="quiz-opt" onclick="checkQuiz(true)">B) Firebase Realtime Database Bulut Teknolojisi</button>
-            <button class="quiz-opt" onclick="checkQuiz(false)">C) Arduino Bluetooth Alıcı Frekansı</button>`;
-        };
+            let currentQuiz = siberQuizBank[currentQuizIndex];
+            
+            let optsHtml = currentQuiz.opts.map((opt, i) => {
+                return `<button class="quiz-opt" onclick="checkQuizAnswer(${i})">${opt}</button>`;
+            }).join('');
 
-        window.checkQuiz = function(isCorrect) {
-            if(isCorrect) {
-                let activeBadges = globalUsers[currentUser].badges || [];
-                if(!activeBadges.includes("deha")) activeBadges.push("deha");
-                set(ref(db, `users/${currentUser}/badges`), activeBadges).then(() => {
-                    alert("Mükemmel siber zeka! Doğru cevap. 'Siber Deha' rozeti profilinize işlendi! 🧠");
-                });
+            qBlock.innerHTML = `
+                <h3 style="color:#9b00ff; margin-top:0;">🧠 Siber Test Aşama: [${currentQuizIndex + 1}/${siberQuizBank.length}]</h3>
+                <p style="font-size:1rem; color:#d399ff; font-weight:bold;">Soru: ${currentQuiz.q}</p>
+                <div style="margin-top:15px;">${optsHtml}</div>
+            `;
+        }
+
+        function checkQuizAnswer(selectedIdx) {
+            let currentQuiz = siberQuizBank[currentQuizIndex];
+            if(selectedIdx === currentQuiz.correct) {
+                if(currentQuizIndex + 1 < siberQuizBank.length) {
+                    showCyberToast("Doğru frekans! Sonraki aşamaya geçiliyor...", "info");
+                    currentQuizIndex++;
+                    renderQuiz();
+                } else {
+                    let users = JSON.parse(localStorage.getItem('siberUsers'));
+                    if(!users[currentUser].badges.includes("deha")) {
+                        users[currentUser].badges.push("deha");
+                        localStorage.setItem('siberUsers', JSON.stringify(users));
+                    }
+                    showCyberToast("Mükemmel zeka! Tüm siber testleri geçtin. 'Siber Deha' rozeti senin!", "info");
+                    logTerminal(`${currentUser} tüm siber testleri tamamlayarak DEHA unvanı kazandı!`, true);
+                    updateUserUI();
+                    renderQuiz();
+                }
             } else {
-                alert("Yanlış siber frekans! Ders notlarını inceleyip tekrar dene Kaptan.");
+                showCyberToast("Hatalı siber frekans! Algoritmayı inceleyip tekrar dene.", "error");
+                logTerminal(`${currentUser} siber testi geçemedi, sistem sıfırlandı.`);
+                currentQuizIndex = 0;
+                renderQuiz();
             }
-        };
+        }
 
-        // ANKET MOTORU
-        window.renderPoll = function() {
+        // ==========================================================================
+        // 9. CANLI ANKET SİSTEMİ MANTIĞI
+        // ==========================================================================
+        function renderPoll() {
             let pollBlock = document.getElementById('pollBlock');
-            if(!globalPoll || !globalPoll.question || globalPoll.question.trim() === "") {
-                pollBlock.style.display = 'none'; return;
+            let poll = JSON.parse(localStorage.getItem('siberPoll'));
+            if(!poll || !poll.question || poll.question.trim() === "") {
+                pollBlock.style.display = 'none';
+                return;
             }
             pollBlock.style.display = 'block';
-            let votes = globalPoll.votes || [];
-            let voters = globalPoll.voters || [];
-            let totalVotes = votes.reduce((a, b) => a + b, 0);
-            let hasVoted = voters.includes(currentUser);
+            let totalVotes = poll.votes.reduce((a, b) => a + b, 0);
+            let hasVoted = poll.voters.includes(currentUser);
             
-            let html = `<h3 style="color:#00ffcc; margin-top:0;">📊 Canlı Anket: ${globalPoll.question}</h3>`;
-            if(!currentUser) html += `<p style="color:#ff0055; font-size:0.9rem; font-weight:bold;">⚠️ Oy kullanabilmek için siber giriş yapmalısınız!</p>`;
-            
-            globalPoll.options.forEach((opt, i) => {
-                let currentOptVotes = votes[i] || 0;
-                let percent = totalVotes > 0 ? Math.round((currentOptVotes / totalVotes) * 100) : 0;
+            let html = `<h3 style="color:#00ffcc; margin-top:0;">📊 Canlı Siber Anket: ${poll.question}</h3>`;
+            if(!currentUser) {
+                html += `<p style="color:#ff0055; font-size:0.85rem; font-weight:bold;">⚠️ Veri akışına oy enjekte etmek için giriş yapmalısınız!</p>`;
+            }
+
+            poll.options.forEach((opt, i) => {
+                let votes = poll.votes[i];
+                let percent = totalVotes > 0 ? Math.round((votes / totalVotes) * 100) : 0;
                 if(hasVoted || isAdmin || !currentUser) {
-                    html += `<div style="margin-bottom: 8px;"><span style="font-size:0.95rem; font-weight:bold; color:#a0aec0;">${opt} (${currentOptVotes} Oy)</span>
-                    <div class="poll-result-bar"><div class="poll-progress" style="width: ${percent}%"></div><span class="poll-percent">%${percent}</span></div></div>`;
+                    html += `
+                        <div style="margin-bottom: 12px;">
+                            <span style="font-size:0.9rem; font-weight:bold; color:#a0aec0;">${opt} [${votes} Oy]</span>
+                            <div class="poll-result-bar">
+                                <div class="poll-progress" style="width: ${percent}%"></div>
+                                <span class="poll-percent">%${percent}</span>
+                            </div>
+                        </div>
+                    `;
                 } else {
-                    html += `<button class="poll-option-btn" onclick="castVote(${i})">⚡ ${opt}</button>`;
+                    html += `<button class="poll-option-btn" onclick="castSiberVote(${i})">⚡ AĞA İLET: ${opt}</button>`;
                 }
             });
             pollBlock.innerHTML = html;
-        };
+        }
 
-        window.castVote = function(index) {
+        function castSiberVote(index) {
             if(!currentUser || isAdmin) return;
-            let votes = globalPoll.votes || [];
-            let voters = globalPoll.voters || [];
-            if(voters.includes(currentUser)) return;
-            
-            votes[index] = (votes[index] || 0) + 1;
-            voters.push(currentUser);
-            
-            update(ref(db, 'poll'), { votes: votes, voters: voters });
-        };
+            let poll = JSON.parse(localStorage.getItem('siberPoll'));
+            if(poll.voters.includes(currentUser)) return;
+            poll.votes[index] += 1;
+            poll.voters.push(currentUser);
+            localStorage.setItem('siberPoll', JSON.stringify(poll));
+            showCyberToast("Oyunuz kriptografik olarak siber ağa işlendi.");
+            logTerminal(`${currentUser} anket üzerinde oy kullandı.`);
+            renderPoll();
+        }
 
-        window.setupNewPoll = function() {
-            let q = document.getElementById('newPollQuestion').value.trim();
-            let o1 = document.getElementById('pollOpt1').value.trim();
-            let o2 = document.getElementById('pollOpt2').value.trim();
-            let o3 = document.getElementById('pollOpt3').value.trim();
-            if(!q || !o1 || !o2) return alert("Eksik bilgi!");
-            
-            let opts = [o1, o2]; if(o3) opts.push(o3);
-            let vts = opts.map(() => 0);
-            
-            set(ref(db, 'poll'), { question: q, options: opts, votes: vts, voters: ["sistem"] }).then(() => {
-                alert("Yeni anket siber bulut belleğe kilitlendi ve aktif edildi!");
-            });
-        };
-
-        window.clearPoll = function() {
-            remove(ref(db, 'poll')).then(() => { alert("Anket temizlendi."); });
-        };
-
-        // PROJE PAYLAŞIM VE BULUT TABANLI DOSYA KONTROLÜ
-        window.addNewPost = function() {
+        // ==========================================================================
+        // 10. PROJE PAYLAŞIM VE GÜVENLİ VERİ YÜKLEME MOTORU (MEGA.NZ UYUM)
+        // ==========================================================================
+        function addNewPost() {
             let title = document.getElementById('postTitle').value.trim();
             let body = document.getElementById('postBody').value.trim();
-            let fileLink = document.getElementById('postFileLink').value.trim();
-            let fileSize = document.getElementById('postFileSize').value.trim() || "Bilinmiyor";
+            let megaLink = document.getElementById('postMegaLink').value.trim();
+            let fileInput = document.getElementById('postFile');
             let imageInput = document.getElementById('postImage');
-            
-            if(title === "" || body === "") return alert("Eksik bilgi! Lütfen başlık ve açıklama yazın.");
-            
-            let id = Date.now().toString();
-            let imageData = "";
 
-            if (imageInput.files && imageInput.files[0]) {
-                let readerImg = new FileReader();
-                readerImg.onload = function(e) {
-                    imageData = e.target.result;
-                    savePostToCloud(id, title, body, fileLink, fileSize, imageData);
-                };
-                readerImg.readAsDataURL(imageInput.files[0]);
-            } else {
-                savePostToCloud(id, title, body, fileLink, fileSize, imageData);
+            if(title === "" || body === "") {
+                showCyberToast("Eksik veri enjeksiyonu! Başlık ve açıklama zorunludur.", "error");
+                return;
             }
-        };
 
-        function savePostToCloud(id, title, body, fileLink, fileSize, imageData) {
+            let fileData = "";
+            let fileName = "";
+            let imageData = "";
+            let fileSize = calculatedFileSize;
+
+            // Güvenli zincirleme FileReader tetikleyicisi
+            let proceedWithImage = () => {
+                if (imageInput.files && imageInput.files[0]) {
+                    let readerImg = new FileReader();
+                    readerImg.onload = function(e) {
+                        imageData = e.target.result;
+                        executePostSave(title, body, megaLink, fileData, fileName, imageData, fileSize);
+                    };
+                    readerImg.readAsDataURL(imageInput.files[0]);
+                } else {
+                    executePostSave(title, body, megaLink, fileData, fileName, imageData, fileSize);
+                }
+            };
+
+            if (fileInput.files && fileInput.files[0]) {
+                let file = fileInput.files[0];
+                fileName = file.name;
+                let readerFile = new FileReader();
+                readerFile.onload = function(e) {
+                    fileData = e.target.result;
+                    proceedWithImage();
+                };
+                readerFile.readAsDataURL(file);
+            } else {
+                proceedWithImage();
+            }
+        }
+
+        function executePostSave(title, body, megaLink, fileData, fileName, imageData, fileSize) {
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            
+            // Eğer Mega linki girilmişse ama açıklama metninde yoksa linki temizce işleyelim
+            let isMegaDetected = megaLink.includes("mega.nz");
+
             let newPost = {
-                id: id,
+                id: Date.now().toString(),
                 title: title,
                 body: body,
-                fileLink: fileLink,
-                fileSize: fileSize,
+                megaLink: isMegaDetected ? megaLink : (body.includes("mega.nz") ? body : ""),
+                fileData: fileData,
+                fileName: fileName,
                 image: imageData,
-                likes: ["sistem"],
-                comments: [{user: "Açıkdeniz Bot", text: "Siber proje istasyonu aktif edildi.", pinned: false}],
+                fileSize: fileSize,
+                likes: [],
+                comments: [],
                 downloads: 0
             };
 
-            set(ref(db, 'posts/' + id), newPost).then(() => {
-                document.getElementById('postTitle').value = "";
-                document.getElementById('postBody').value = "";
-                document.getElementById('postFileLink').value = "";
-                document.getElementById('postFileSize').value = "";
-                document.getElementById('postImage').value = "";
-                alert("Yeni siber proje küresel ağda başarıyla yayınlandı!");
-                navigateToMain();
-            });
+            posts.unshift(newPost);
+            localStorage.setItem('posts', JSON.stringify(posts));
+
+            // Form element temizlik rutinleri
+            document.getElementById('postTitle').value = "";
+            document.getElementById('postBody').value = "";
+            document.getElementById('postMegaLink').value = "";
+            document.getElementById('postFile').value = "";
+            document.getElementById('postImage').value = "";
+            calculatedFileSize = "";
+
+            showCyberToast("Yeni siber proje ağ tabanına başarıyla işlendi!", "info");
+            logTerminal(`Yeni proje yayınlandı: ${title}`);
+            loadPosts();
+            updateStatusBar();
         }
 
-        window.loadPosts = function() {
+        function loadPosts() {
             let contentList = document.getElementById('contentList');
             if(!contentList) return;
             contentList.innerHTML = "";
-            
+
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
             let searchQuery = document.getElementById('searchBox').value.toLowerCase().trim();
             let sortBy = document.getElementById('sortBox').value;
-            
-            let displayPosts = [...globalPosts];
 
+            // Arama Süzgeci
             if(searchQuery !== "") {
-                displayPosts = displayPosts.filter(post => post.title.toLowerCase().includes(searchQuery) || post.body.toLowerCase().includes(searchQuery));
+                posts = posts.filter(post => 
+                    post.title.toLowerCase().includes(searchQuery) || 
+                    post.body.toLowerCase().includes(searchQuery)
+                );
             }
 
-            if (sortBy === "yeni") displayPosts.sort((a, b) => b.id - a.id);
-            else if (sortBy === "eski") displayPosts.sort((a, b) => a.id - b.id);
-            else if (sortBy === "populer") displayPosts.sort((a, b) => ((b.likes || []).length) - ((a.likes || []).length));
+            // Gelişmiş Sıralama Süzgeci
+            if (sortBy === "yeni") posts.sort((a, b) => b.id - a.id);
+            else if (sortBy === "eski") posts.sort((a, b) => a.id - b.id);
+            else if (sortBy === "populer") posts.sort((a, b) => (b.likes ? b.likes.length : 0) - (a.likes ? a.likes.length : 0));
 
-            displayPosts.forEach(post => {
+            if(posts.length === 0) {
+                contentList.innerHTML = `<p style="text-align:center; color:#666; font-style:italic;">Dizin taramasında eşleşen siber proje kaydına rastlanmadı.</p>`;
+                return;
+            }
+
+            posts.forEach(post => {
                 let imgHtml = post.image ? `<img src="${post.image}">` : "";
-                let deleteBtnHtml = isAdmin ? `<button class="delete-btn" style="display:block;" onclick="deletePost('${post.id}', event)">Projeyi Sil</button>` : "";
-                let lCount = (post.likes || []).filter(l => l !== "sistem").length;
-                let cCount = (post.comments || []).length;
+                let deleteBtnHtml = isAdmin ? `<button class="delete-btn" style="display:block;" onclick="deletePost('${post.id}', event)">Kayıttan Sil</button>` : "";
+                
+                // Mega.nz Etiket Ayrıştırma Süzgeci
+                let isMega = (post.megaLink && post.megaLink !== "") || post.body.includes("mega.nz");
+                let megaBadge = isMega ? `<span class="badge" style="background:rgba(217, 39, 46, 0.2); border-color:#d9272e; color:#white;">📡 MEGA.NZ DESTEKLİ</span>` : "";
 
-                contentList.innerHTML += `<div class="project-card" onclick="navigateToProject('${post.id}')">
-                    ${deleteBtnHtml}
-                    <h2>${post.title}</h2>
-                    <p>${post.body.substring(0, 150)}...</p>
-                    ${imgHtml}
-                    <div class="card-actions" style="margin-top:10px;">
-                        <span>❤️ ${lCount} Beğeni</span> | <span>💬 ${cCount} Yorum</span>
+                contentList.innerHTML += `
+                    <div class="project-card ${isMega ? 'project-card-mega' : ''}" onclick="navigateToProject('${post.id}')">
+                        ${deleteBtnHtml}
+                        <h2>${post.title} ${megaBadge}</h2>
+                        <p>${post.body.substring(0, 160)}...</p>
+                        ${imgHtml}
+                        <div class="card-actions" style="margin-top:15px; font-size:0.85rem; display:flex; gap:15px;">
+                            <span style="color:#00ffcc;">❤️ ${post.likes ? post.likes.length : 0} Beğeni</span>
+                            <span style="color:#ff007f;">💬 ${post.comments ? post.comments.length : 0} Yorum</span>
+                        </div>
                     </div>
-                </div>`;
+                `;
             });
-        };
+        }
 
-        window.navigateToProject = function(id) { window.location.hash = "proje-" + id; };
-        window.navigateToMain = function() { window.location.hash = ""; };
-        
+        function navigateToProject(id) { window.location.hash = "proje-" + id; }
+        function navigateToMain() { window.location.hash = ""; }
         function showMainPage() {
             document.getElementById('detailPage').style.display = 'none';
             document.getElementById('mainPage').style.display = 'block';
             loadPosts();
+            updateStatusBar();
         }
 
+        // ==========================================================================
+        // 11. PROJE DETAYLARI VE DETAYLI MEGA.NZ BAĞLANTI İŞLEYİCİSİ
+        // ==========================================================================
         function showProjectDetail(id) {
-            let post = globalPosts.find(p => p.id === id);
-            if (!post) { navigateToMain(); return; }
-            
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            let post = posts.find(p => p.id === id);
+
+            if (!post) {
+                navigateToMain();
+                return;
+            }
+
             document.getElementById('mainPage').style.display = 'none';
             document.getElementById('detailPage').style.display = 'block';
             
             let imgHtml = post.image ? `<img src="${post.image}">` : "";
             let downloadHtml = "";
-            
-            if(post.fileLink) {
-                let sizeLabel = post.fileSize ? `<span class="size-badge">${post.fileSize}</span>` : "";
-                downloadHtml = `<br><a href="${post.fileLink}" target="_blank" onclick="registerDownload('${post.id}')" class="download-btn">📥 Proje Dosyasını İndir / İncele</a>${sizeLabel}
-                <span id="adminCounter" class="admin-counter" style="${isAdmin ? 'display:inline-block;' : 'display:none;'}">📊 Tıklanma Sayısı: ${post.downloads || 0}</span>`;
+
+            // 1. Durum: Mega.nz Link Algılama Mantığı (En Öncelikli Yol)
+            if(post.megaLink && post.megaLink.trim() !== "") {
+                downloadHtml = `
+                    <br>
+                    <a href="${post.megaLink}" target="_blank" onclick="registerSiberDownload('${post.id}')" class="mega-btn">
+                        📥 MEGA.NZ Bulutundan Güvenli İndir
+                    </a>
+                    <span id="adminCounter" class="admin-counter" style="color:#ff007f; margin-left:15px; font-weight:bold; ${isAdmin ? 'display:inline-block;' : 'display:none;'}">
+                        📊 Tıklanma: ${post.downloads || 0}
+                    </span>
+                `;
+            } 
+            // 2. Durum: Eğer Link Doğrudan Açıklamaya Yapıştırılmışsa Onu da Yakalayalım
+            else if (post.body.includes("mega.nz")) {
+                let foundLink = post.body.match(/(https?:\/\/mega\.nz\/[^\s]+)/g);
+                let actualLink = foundLink ? foundLink[0] : post.body;
+                downloadHtml = `
+                    <br>
+                    <a href="${actualLink}" target="_blank" onclick="registerSiberDownload('${post.id}')" class="mega-btn">
+                        📥 Tespit Edilen MEGA.NZ Bağlantısını Aç
+                    </a>
+                    <span id="adminCounter" class="admin-counter" style="color:#ff007f; margin-left:15px; font-weight:bold; ${isAdmin ? 'display:inline-block;' : 'display:none;'}">
+                        📊 Tıklanma: ${post.downloads || 0}
+                    </span>
+                `;
+            }
+            // 3. Durum: Standart Gömülü Yerel Dosya Eki Varsa
+            else if(post.fileData && post.fileName) {
+                let sizeLabel = post.fileSize ? `<span class="size-badge" style="background:rgba(0,255,204,0.1); border:1px solid #00ffcc; padding:2px 6px; font-size:0.8rem; border-radius:4px; margin-left:10px;">${post.fileSize}</span>` : "";
+                downloadHtml = `
+                    <br>
+                    <button onclick="downloadEmbeddedFile('${post.id}')" class="btn" style="margin-top:20px;">
+                        📥 Yerel Eki Çek: ${post.fileName}
+                    </button>
+                    ${sizeLabel}
+                    <span id="adminCounter" class="admin-counter" style="color:#ff007f; margin-left:15px; font-weight:bold; ${isAdmin ? 'display:inline-block;' : 'display:none;'}">
+                        📊 İndirme: ${post.downloads || 0}
+                    </span>
+                `;
             }
 
-            let pureLikes = (post.likes || []).filter(l => l !== "sistem").length;
-
-            document.getElementById('detailContent').innerHTML = `<h1 style="color: #ff007f; text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);">${post.title}</h1>
-            <div style="margin-bottom:15px;">
-                <button class="btn" style="background:rgba(0,255,204,0.1); border:1px solid #00ffcc; color:#00ffcc;" onclick="likeProject('${post.id}')">❤️ <span id="likeCountDetail">${pureLikes}</span> Beğen</button>
-            </div>
-            <hr style="border: 0; border-top: 1px solid rgba(255, 0, 127, 0.3); margin-bottom: 20px;">
-            <p style="color: #e2e8f0; font-size: 1.1rem; white-space: pre-line;">${post.body}</p>
-            ${imgHtml} ${downloadHtml}`;
+            document.getElementById('detailContent').innerHTML = `
+                <h1 style="color: #ff007f; text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);">${post.title}</h1>
+                <div style="margin-bottom:20px;">
+                    <button class="btn" style="background:rgba(0,255,204,0.05); border:1px solid #00ffcc; color:#00ffcc; padding:6px 16px;" onclick="likeProject('${post.id}')">
+                        ❤️ <span id="likeCountDetail">${post.likes ? post.likes.length : 0}</span> Kilidi Beğen
+                    </button>
+                </div>
+                <hr style="border: 0; border-top: 1px dashed rgba(255, 0, 127, 0.3); margin-bottom: 25px;">
+                <p style="color: #e2e8f0; font-size: 1.05rem; white-space: pre-line; background:rgba(0,0,0,0.3); padding:20px; border-radius:4px; border:1px solid rgba(255,255,255,0.02);">${post.body}</p>
+                ${imgHtml}
+                ${downloadHtml}
+            `;
 
             document.getElementById('commentInputFields').style.display = currentUser ? 'block' : 'none';
             document.getElementById('commentWarning').style.display = currentUser ? 'none' : 'block';
             loadComments(post);
         }
 
-        window.registerDownload = function(id) {
-            let post = globalPosts.find(p => p.id === id);
-            if(!post) return;
-            let currentDownloads = (post.downloads || 0) + 1;
-            set(ref(db, `posts/${id}/downloads`), currentDownloads);
-        };
+        function registerSiberDownload(id) {
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            let idx = posts.findIndex(p => p.id === id);
+            if(idx !== -1) {
+                if(!posts[idx].downloads) posts[idx].downloads = 0;
+                posts[idx].downloads += 1;
+                localStorage.setItem('posts', JSON.stringify(posts));
+                logTerminal(`Mega.nz bağlantısına harici istek gönderildi: [ID: ${id}]`);
+            }
+        }
 
-        window.likeProject = function(id) {
-            if(!currentUser) return alert("Siber ağa giriş yapmalısınız!");
-            let post = globalPosts.find(p => p.id === id);
-            if(!post) return;
+        function downloadEmbeddedFile(id) {
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            let postIndex = posts.findIndex(p => p.id === id);
+            if(postIndex === -1 || !posts[postIndex].fileData) return;
             
-            let activeLikes = post.likes || [];
-            if(activeLikes.includes(currentUser)) {
-                activeLikes = activeLikes.filter(u => u !== currentUser);
+            if(!posts[postIndex].downloads) posts[postIndex].downloads = 0;
+            posts[postIndex].downloads += 1;
+            localStorage.setItem('posts', JSON.stringify(posts));
+            
+            if(isAdmin && document.getElementById('adminCounter')) {
+                document.getElementById('adminCounter').innerText = `📊 İndirme: ${posts[postIndex].downloads}`;
+            }
+
+            let a = document.createElement("a");
+            a.href = posts[postIndex].fileData;
+            a.download = posts[postIndex].fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            logTerminal(`Gömülü yerel dosya eki indirildi: ${posts[postIndex].fileName}`);
+        }
+
+        function likeProject(id) {
+            if(!currentUser) {
+                showCyberToast("Siber kimlik doğrulaması olmadan beğeni hattı tetiklenemez!", "warning");
+                return;
+            }
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            let postIndex = posts.findIndex(p => p.id === id);
+            if(postIndex === -1) return;
+            
+            if(!posts[postIndex].likes) posts[postIndex].likes = [];
+            
+            if(posts[postIndex].likes.includes(currentUser)) {
+                posts[postIndex].likes = posts[postIndex].likes.filter(u => u !== currentUser);
+                showCyberToast("Beğenme paketi geri çekildi.");
             } else {
-                activeLikes.push(currentUser);
+                posts[postIndex].likes.push(currentUser);
+                showCyberToast("Proje veritabanı beğeni sinyali gönderildi.", "info");
             }
-            set(ref(db, `posts/${id}/likes`), activeLikes);
-        };
+            
+            localStorage.setItem('posts', JSON.stringify(posts));
+            document.getElementById('likeCountDetail').innerText = posts[postIndex].likes.length;
+            logTerminal(`${currentUser}, [ID: ${id}] nolu projeye beğeni durumunu güncelledi.`);
+        }
 
-        // YORUM SİSTEMİ MERKEZİ
+        // ==========================================================================
+        // 12. GELİŞMİŞ SİBER YORUMLAMA VE PANEL MODERASYONU (COMMENTS ENGINE)
+        // ==========================================================================
         function loadComments(post) {
-            let list = document.getElementById('commentsList'); list.innerHTML = "";
-            let comments = post.comments || [];
-            if(comments.length === 0) {
-                list.innerHTML = `<p style="color:#718096; font-style:italic;">Henüz yorum yapılmamış.</p>`; return;
+            let list = document.getElementById('commentsList');
+            list.innerHTML = "";
+
+            if(!post.comments || post.comments.length === 0) {
+                list.innerHTML = `<p style="color:#555; font-style:italic; padding-left:10px;">Ağ segmentinde henüz bu proje için yorum paketi algılanmadı.</p>`;
+                return;
             }
 
-            let sortedComments = [...comments].map((c, idx) => ({...c, originalIndex: idx}));
+            let sortedComments = [...post.comments].map((c, idx) => ({...c, originalIndex: idx}));
+            // Pini olanları en yukarı alan sıralama algoritması
             sortedComments.sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
 
             sortedComments.forEach((c) => {
                 let delBtnHtml = isAdmin ? `<button class="comment-delete-btn" style="display:block;" onclick="deleteComment(${c.originalIndex})">Yorumu Sil</button>` : "";
-                let pinBtnHtml = isAdmin ? `<button class="pin-btn" style="display:inline-block;" onclick="togglePinComment(${c.originalIndex})">${c.pinned ? '📌 Pini Kaldır' : '📌 Pinle'}</button>` : "";
+                let pinBtnHtml = isAdmin ? `<button class="pin-btn" style="display:inline-block;" onclick="togglePinComment(${c.originalIndex})">${c.pinned ? '📌 Pini Sök' : '📌 Sabitle'}</button>` : "";
                 let pinClass = c.pinned ? "comment-pinned" : "";
                 let badgeText = "";
 
                 if(c.user.includes("Yönetici")) {
                     badgeText = `<span class="badge badge-kahraman">👑 BAŞ GELİŞTİRİCİ</span>`;
                 } else {
-                    let uData = globalUsers[c.user];
-                    if(uData && uData.badges) {
-                        if(uData.badges.includes("kahraman")) badgeText += `<span class="badge badge-kahraman">👑 Kahraman</span>`;
-                        if(uData.badges.includes("deha")) badgeText += `<span class="badge badge-deha">🧠 Deha</span>`;
-                        if(uData.badges.includes("çırak")) badgeText += `<span class="badge badge-cirak">🛠️ Çırak</span>`;
+                    let users = JSON.parse(localStorage.getItem('siberUsers'));
+                    if(users[c.user] && users[c.user].badges) {
+                        if(users[c.user].badges.includes("kahraman")) badgeText += `<span class="badge badge-kahraman">👑 Kahraman</span>`;
+                        if(users[c.user].badges.includes("deha")) badgeText += `<span class="badge badge-deha">🧠 Deha</span>`;
+                        if(users[c.user].badges.includes("çırak")) badgeText += `<span class="badge badge-cirak">🛠️ Çırak</span>`;
                     }
                 }
-                list.innerHTML += `<div class="comment-box ${pinClass}">${delBtnHtml}
-                    <div class="comment-user">👤 ${c.user} ${badgeText} ${pinBtnHtml}</div>
-                    <div class="comment-text">${c.text}</div>
-                </div>`;
+
+                list.innerHTML += `
+                    <div class="comment-box ${pinClass}">
+                        ${delBtnHtml}
+                        <div class="comment-user">👤 ${c.user} ${badgeText} ${pinBtnHtml}</div>
+                        <div class="comment-text">${c.text}</div>
+                    </div>
+                `;
             });
         }
 
-        window.submitComment = function() {
+        function submitComment() {
             let text = document.getElementById('newCommentText').value.trim();
             if(text === "") return;
-            
-            let post = globalPosts.find(p => p.id === activeProjectId);
-            if(!post) return;
-            
-            let activeComments = post.comments || [];
-            activeComments.push({ user: currentUser, text: text, pinned: false });
-            
-            set(ref(db, `posts/${activeProjectId}/comments`), activeComments).then(() => {
-                document.getElementById('newCommentText').value = "";
-                
-                // İlk Yorum Rozeti Verme Kontrolü
-                if(!isAdmin) {
-                    let activeBadges = globalUsers[currentUser].badges || [];
-                    if(!activeBadges.includes("çırak")) {
-                        activeBadges.push("çırak");
-                        set(ref(db, `users/${currentUser}/badges`), activeBadges).then(() => {
-                            alert("İlk siber yorumunuz için 'Siber Çırak' rozeti kazandınız! 🛠️");
-                        });
-                    }
+
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            let postIndex = posts.findIndex(p => p.id === activeProjectId);
+            if(postIndex === -1) return;
+
+            if(!posts[postIndex].comments) posts[postIndex].comments = [];
+            posts[postIndex].comments.push({ user: currentUser, text: text, pinned: false });
+
+            // İlk Yorumunda Çırak Rozeti Verilmesi Mantığı
+            if(!isAdmin) {
+                let users = JSON.parse(localStorage.getItem('siberUsers'));
+                if(!users[currentUser].badges.includes("çırak")) {
+                    users[currentUser].badges.push("çırak");
+                    localStorage.setItem('siberUsers', JSON.stringify(users));
+                    showCyberToast("İlk siber veri paketiniz için 'Siber Çırak' rozeti kazandınız! 🛠️", "info");
+                    logTerminal(`${currentUser} ilk yorumunu atarak ÇIRAK rozeti kazandı!`, true);
+                    updateUserUI();
                 }
-            });
-        };
-
-        window.togglePinComment = function(idx) {
-            let post = globalPosts.find(p => p.id === activeProjectId);
-            if(!post) return;
-            post.comments[idx].pinned = !post.comments[idx].pinned;
-            set(ref(db, `posts/${activeProjectId}/comments`), post.comments);
-        };
-
-        window.deleteComment = function(commentIndex) {
-            if(!confirm("Yorum silinsin mi?")) return;
-            let post = globalPosts.find(p => p.id === activeProjectId);
-            if(post && post.comments) {
-                post.comments.splice(commentIndex, 1);
-                set(ref(db, `posts/${activeProjectId}/comments`), post.comments);
             }
-        };
 
-        window.deletePost = function(id, event) {
+            localStorage.setItem('posts', JSON.stringify(posts));
+            document.getElementById('newCommentText').value = "";
+            showCyberToast("Yorum veri hattına başarıyla enjekte edildi.");
+            loadComments(posts[postIndex]);
+        }
+
+        function togglePinComment(idx) {
+            if(!isAdmin) return;
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            let postIndex = posts.findIndex(p => p.id === activeProjectId);
+            if(postIndex === -1) return;
+
+            posts[postIndex].comments[idx].pinned = !posts[postIndex].comments[idx].pinned;
+            localStorage.setItem('posts', JSON.stringify(posts));
+            showCyberToast("Yorum pin durumu güncellendi.");
+            loadComments(posts[postIndex]);
+        }
+
+        function deleteComment(commentIndex) {
+            if(!isAdmin) return;
+            if(!confirm("Bu operatör yorum paketini hattan düşürmek istediğinize emin misiniz?")) return;
+            
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            let postIndex = posts.findIndex(p => p.id === activeProjectId);
+            if(postIndex !== -1 && posts[postIndex].comments) {
+                posts[postIndex].comments.splice(commentIndex, 1);
+                localStorage.setItem('posts', JSON.stringify(posts));
+                showCyberToast("Yorum imha edildi.", "warning");
+                loadComments(posts[postIndex]);
+            }
+        }
+
+        function deletePost(id, event) {
             event.stopPropagation();
-            if(confirm("Projeyi küresel bulut ağından silmek istiyor musun?")) {
-                remove(ref(db, 'posts/' + id)).then(() => {
-                    alert("Proje silindi.");
-                    navigateToMain();
-                });
+            if(!isAdmin) return;
+            if(confirm("Bu siber projeyi veri merkezinden tamamen silmek mi istiyorsun Kaptan?")) {
+                let posts = JSON.parse(localStorage.getItem('posts')) || [];
+                posts = posts.filter(p => p.id !== id);
+                localStorage.setItem('posts', JSON.stringify(posts));
+                showCyberToast("Proje kaydı dizinden kazındı.", "warning");
+                logTerminal(`Proje silindi! ID: ${id}`);
+                loadPosts();
+                navigateToMain();
+                updateStatusBar();
             }
-        };
+        }
 
-        // Arka Plan Siber Matris Animasyonu
+        // ==========================================================================
+        // 13. KAPTAN YÖNETİM PANELİ EK FONKSİYONLARI (KONSOL MANTIĞI)
+        // ==========================================================================
+        function updateTicker() {
+            if(!isAdmin) return;
+            let text = document.getElementById('adminTickerInput').value.trim();
+            if(text === "") return;
+            
+            localStorage.setItem('siberTicker', text);
+            document.getElementById('tickerBox').innerText = text;
+            document.getElementById('tickerWrapper').style.display = 'block';
+            document.getElementById('adminTickerInput').value = "";
+            showCyberToast("Manşet duyuru şeridi güncellendi ve kilitlendi.", "info");
+            logTerminal(`Yönetici duyuru geçti: ${text}`);
+        }
+
+        function clearTicker() {
+            if(!isAdmin) return;
+            localStorage.removeItem('siberTicker');
+            document.getElementById('tickerWrapper').style.display = 'none';
+            showCyberToast("Duyuru hattı sıfırlandı.", "warning");
+        }
+
+        function fillUserSelectBox() {
+            let box = document.getElementById('userSelectBox');
+            if(!box) return;
+            box.innerHTML = "";
+            let users = JSON.parse(localStorage.getItem('siberUsers')) || {};
+            let keys = Object.keys(users);
+            if(keys.length === 0) {
+                box.innerHTML = `<option value="">Kayıtlı Operatör Yok</option>`;
+                return;
+            }
+            keys.forEach(u => {
+                box.innerHTML += `<option value="${u}">${u}</option>`;
+            });
+        }
+
+        function assignHero() {
+            if(!isAdmin) return;
+            let selectedUser = document.getElementById('userSelectBox').value;
+            if(!selectedUser || selectedUser === "") return;
+
+            let users = JSON.parse(localStorage.getItem('siberUsers'));
+            // Eski kahraman unvanlarını temizleyen döngü
+            Object.keys(users).forEach(u => {
+                users[u].badges = users[u].badges.filter(b => b !== "kahraman");
+            });
+
+            if(!users[selectedUser].badges.includes("kahraman")) {
+                users[selectedUser].badges.push("kahraman");
+            }
+
+            localStorage.setItem('siberUsers', JSON.stringify(users));
+            showCyberToast(`${selectedUser} siber üs komutası tarafından HAFTANIN KAHRAMANI ilan edildi!`, "info");
+            logTerminal(`${selectedUser} kullanıcısına KAHRAMAN rozeti verildi!`, true);
+            updateUserUI();
+        }
+
+        function adminDeleteUser() {
+            if(!isAdmin) return;
+            let selectedUser = document.getElementById('userSelectBox').value;
+            if(!selectedUser || selectedUser === "") return;
+
+            if(confirm(`🚨 ${selectedUser} isimli siber hattı ve operatör bağını koparmak istediğine emin misin Kaptan?`)) {
+                let users = JSON.parse(localStorage.getItem('siberUsers'));
+                let posts = JSON.parse(localStorage.getItem('posts')) || [];
+                
+                // Beğeni temizleme döngüsü
+                posts.forEach(post => {
+                    if(post.likes) post.likes = post.likes.filter(u => u !== selectedUser);
+                });
+                localStorage.setItem('posts', JSON.stringify(posts));
+                delete users[selectedUser];
+                localStorage.setItem('siberUsers', JSON.stringify(users));
+
+                showCyberToast(`${selectedUser} siber kimliği hattan düşürüldü.`, "warning");
+                logTerminal(`Yönetici komutuyla kullanıcı imha edildi: ${selectedUser}`);
+                fillUserSelectBox();
+                updateStatusBar();
+
+                if(currentUser === selectedUser) {
+                    siberLogoutEngine();
+                } else {
+                    loadPosts();
+                    if(window.location.hash.startsWith("#proje-")) showProjectDetail(activeProjectId);
+                }
+            }
+        }
+
+        function setupNewPoll() {
+            if(!isAdmin) return;
+            let q = document.getElementById('newPollQuestion').value.trim();
+            let o1 = document.getElementById('pollOpt1').value.trim();
+            let o2 = document.getElementById('pollOpt2').value.trim();
+            let o3 = document.getElementById('pollOpt3').value.trim();
+
+            if(!q || !o1 || !o2) {
+                showCyberToast("Anket oluşturmak için soru ve en az 2 seçenek girilmelidir!", "error");
+                return;
+            }
+
+            let newPoll = {
+                question: q,
+                options: [o1, o2],
+                votes: [0, 0],
+                voters: []
+            };
+
+            if(o3 && o3.trim() !== "") {
+                newPoll.options.push(o3);
+                newPoll.votes.push(0);
+            }
+
+            localStorage.setItem('siberPoll', JSON.stringify(newPoll));
+            showCyberToast("Yeni siber anket ağ segmentine enjekte edildi.", "info");
+            logTerminal(`Yeni anket oluşturuldu: ${q}`);
+            renderPoll();
+        }
+
+        function clearPoll() {
+            if(!isAdmin) return;
+            localStorage.removeItem('siberPoll');
+            document.getElementById('pollBlock').style.display = 'none';
+            showCyberToast("Anket ağdan kaldırıldı.", "warning");
+        }
+
+        // ==========================================================================
+        // 14. MATRİS SİBER PARÇACIK ARKA PLAN ANİMASYONU (CANVAS ALGORİTMASI)
+        // ==========================================================================
         const canvas = document.getElementById('bg-animation');
         const ctx = canvas.getContext('2d');
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        resizeCanvas(); window.addEventListener('resize', resizeCanvas);
-
         const dots = [];
-        for (let i = 0; i < 60; i++) dots.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * 0.8, vy: (Math.random() - 0.5) * 0.8, radius: Math.random() * 2 + 1 });
+        const maxDotsCount = 65;
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = '#00ffcc';
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Rastgele koordinat ve hız vektörlü parçacık matrisi doldurma döngüsü
+        for (let i = 0; i < maxDotsCount; i++) {
+            dots.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.7,
+                vy: (Math.random() - 0.5) * 0.7,
+                radius: Math.random() * 2 + 1
+            });
+        }
+
+        function animateCyberNetwork() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ffcc';
+
+            // Parçacık konum güncellemesi ve sınır sekme mantığı
             dots.forEach(dot => {
-                dot.x += dot.vx; dot.y += dot.vy;
+                dot.x += dot.vx;
+                dot.y += dot.vy;
+
                 if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
                 if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
-                ctx.beginPath(); ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2); ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+                ctx.fill();
             });
-            for (let i = 0; i < 60; i++) {
-                for (let j = i + 1; j < 60; j++) {
+
+            // Parçacıklar arası mesafe ölçümü ve siber ağ çizgileri bağlama döngüsü
+            for (let i = 0; i < maxDotsCount; i++) {
+                for (let j = i + 1; j < maxDotsCount; j++) {
                     const dist = Math.hypot(dots[i].x - dots[j].x, dots[i].y - dots[j].y);
-                    if (dist < 120) {
-                        ctx.strokeStyle = `rgba(0, 255, 204, ${1 - dist / 120 * 0.15})`; ctx.lineWidth = 0.5;
-                        ctx.beginPath(); ctx.moveTo(dots[i].x, dots[i].y); ctx.lineTo(dots[j].x, dots[j].y); ctx.stroke();
+                    if (dist < 130) {
+                        ctx.strokeStyle = `rgba(0, 255, 204, ${1 - dist / 130 * 0.18})`;
+                        ctx.lineWidth = 0.4;
+                        ctx.beginPath();
+                        ctx.moveTo(dots[i].x, dots[i].y);
+                        ctx.lineTo(dots[j].x, dots[j].y);
+                        ctx.stroke();
                     }
                 }
             }
-            requestAnimationFrame(animate);
+            requestAnimationFrame(animateCyberNetwork);
         }
-        animate();
+        animateCyberNetwork();
     </script>
 </body>
 </html>
