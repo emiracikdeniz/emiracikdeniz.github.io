@@ -3,58 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emir Talha Açıkdeniz</title>
+    <title>Emir Talha Açıkdeniz - Global Siber Ağ</title>
     <style>
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #0a0a0c; 
-            color: #00ffcc; 
-            margin: 0; 
-            padding: 40px; 
-            padding-bottom: 80px;
-            overflow-x: hidden;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0a0a0c; color: #00ffcc; margin: 0; padding: 40px; padding-bottom: 80px; overflow-x: hidden; }
         #bg-animation { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; opacity: 0.15; }
-        
         /* SİBER DUYURU BANDI */
         .ticker-wrap { width: 100%; background: rgba(255, 0, 127, 0.2); border-bottom: 1px solid #ff007f; overflow: hidden; white-space: nowrap; padding: 8px 0; margin-bottom: 20px; border-radius: 6px; }
         .ticker-text { display: inline-block; padding-left: 100%; font-weight: bold; color: #fff; text-shadow: 0 0 5px #ff007f; animation: ticker 25s linear infinite; }
         @keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
-
         .header-bar { display: flex; justify-content: space-between; align-items: center; max-width: 850px; margin: 0 auto 20px auto; }
         .container { max-width: 850px; background: rgba(16, 16, 20, 0.85); padding: 30px; border-radius: 12px; box-shadow: 0 0 20px rgba(0, 255, 204, 0.2); border: 1px solid rgba(0, 255, 204, 0.3); margin-bottom: 25px; margin-left: auto; margin-right: auto; backdrop-filter: blur(5px); }
         h1 { color: #00ffcc; font-weight: 700; text-shadow: 0 0 10px rgba(0, 255, 204, 0.5); margin-top: 0; }
         h2 { color: #ff007f; text-shadow: 0 0 8px rgba(255, 0, 127, 0.4); }
         p { color: #a0aec0; line-height: 1.6; }
-        
         /* Rozet Tasarımları */
         .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; margin-right: 5px; margin-top: 5px; border: 1px solid transparent; }
         .badge-cirak { background: rgba(0, 255, 204, 0.1); border-color: #00ffcc; color: #00ffcc; }
         .badge-deha { background: rgba(155, 0, 255, 0.2); border-color: #9b00ff; color: #d399ff; }
         .badge-kahraman { background: rgba(255, 215, 0, 0.2); border-color: #ffd700; color: #ffd700; text-shadow: 0 0 5px #ffd700; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; } 100% { opacity: 0.8; } }
-
         /* Profil Alanı */
         .profile-card { background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid rgba(0,255,204,0.1); margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-
         /* Giriş Formu Elementleri */
         .auth-grid { display: flex; gap: 10px; align-items: center; }
         .auth-input-style { padding: 6px 12px; border-radius: 4px; border: 1px solid #333; background: #111; color: #fff; width: 140px; }
-
         /* Arama ve Filtreleme Alanı */
         .filter-bar { display: flex; gap: 15px; margin-bottom: 25px; }
         .search-input { flex: 2; padding: 10px 15px; border-radius: 6px; border: 1px solid rgba(0, 255, 204, 0.3); background: #111; color: #fff; font-size: 0.95rem; outline: none; }
         .sort-select { flex: 1; padding: 10px; border-radius: 6px; border: 1px solid rgba(0, 255, 204, 0.3); background: #111; color: #00ffcc; font-size: 0.95rem; cursor: pointer; }
-
         /* Proje Kartları */
         .project-card { cursor: pointer; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 25px; margin-bottom: 25px; transition: transform 0.2s ease, background 0.2s ease; position: relative; }
         .project-card:hover { transform: scale(1.01); background: rgba(0, 255, 204, 0.02); }
-        
         /* Bilgi Yarışması Küpü */
         .quiz-container { background: rgba(155, 0, 255, 0.05); border: 1px dashed #9b00ff; padding: 20px; border-radius: 8px; margin-bottom: 25px; }
         .quiz-opt { background: #111; border: 1px solid rgba(155,0,255,0.4); color: #d399ff; padding: 8px 12px; margin: 5px 0; border-radius: 4px; cursor: pointer; width: 100%; text-align: left; }
         .quiz-opt:hover { background: rgba(155, 0, 255, 0.1); }
-
         /* Anket Alanı */
         .poll-container { border: 1px dashed #00ffcc; background: rgba(0, 255, 204, 0.03); padding: 20px; border-radius: 8px; margin-bottom: 25px; }
         .poll-option-btn { background: #111; border: 1px solid rgba(0,255,204,0.4); color: #00ffcc; padding: 8px 15px; margin: 5px 0; border-radius: 5px; cursor: pointer; display: block; width: 100%; text-align: left; font-weight: bold; }
@@ -62,13 +45,11 @@
         .poll-result-bar { background: rgba(255, 255, 255, 0.05); border-radius: 4px; margin: 8px 0; overflow: hidden; position: relative; height: 24px; border: 1px solid rgba(255,0,127,0.2); }
         .poll-progress { background: rgba(255, 0, 127, 0.4); height: 100%; transition: width 0.5s ease; }
         .poll-percent { position: absolute; left: 10px; top: 2px; font-size: 0.85rem; font-weight: bold; color: #fff; }
-
         /* Paneller */
         #adminPanel { display: none; background: #111; border: 1px solid #ff007f; color: #fff; padding: 20px; border-radius: 8px; margin-top: 20px; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; color: #00ffcc; }
         .form-group input, .form-group textarea { width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #333; background: #222; color: #fff; box-sizing: border-box; }
-        
         .btn { padding: 10px 20px; background: #00ffcc; color: #000; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; display: inline-block; text-decoration: none; }
         .btn:hover { background: #00cc99; }
         .download-btn { background: #00ffcc; color: #0a0a0c; font-weight: bold; padding: 12px 25px; border-radius: 6px; text-decoration: none; display: inline-block; margin-top: 20px; transition: all 0.2s ease; cursor: pointer; }
@@ -76,7 +57,6 @@
         .admin-counter { color: #ff007f; font-weight: bold; font-size: 0.95rem; margin-left: 15px; display: none; }
         .delete-btn { position: absolute; top: 10px; right: 10px; background: #ff0055; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; display: none; font-weight: bold; }
         .pin-btn { background: #ff007f; color: white; border: none; padding: 3px 8px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; display: none; margin-left: 10px; }
-
         /* Yorum Sistemi */
         .comments-section { margin-top: 30px; border-top: 1px solid rgba(0, 255, 204, 0.2); padding-top: 20px; }
         .comment-box { background: rgba(255,255,255,0.03); padding: 12px; border-radius: 6px; margin-bottom: 10px; border-left: 3px solid #ff007f; position: relative; }
@@ -84,12 +64,10 @@
         .comment-user { color: #00ffcc; font-weight: bold; font-size: 0.95rem; margin-bottom: 4px; display: flex; align-items: center; }
         .comment-text { color: #e2e8f0; font-size: 0.95rem; padding-right: 120px; }
         .comment-delete-btn { position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 85, 0.2); color: #ff0055; border: 1px solid #ff0055; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; display: none; }
-        
         #mainPage, #detailPage { transition: opacity 0.3s ease; }
         #detailPage { display: none; }
         .back-btn { background: #ff007f; color: white; margin-bottom: 20px; }
         img { max-width: 100%; border-radius: 8px; margin-top: 15px; max-height: 400px; object-fit: cover; border: 1px solid rgba(0, 255, 204, 0.2); }
-
         /* SİBER DURUM ÇUBUĞU */
         .status-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #070709; border-top: 1px solid #00ffcc; color: #a0aec0; display: flex; justify-content: space-around; align-items: center; padding: 8px 0; font-size: 0.85rem; font-family: monospace; z-index: 1000; box-shadow: 0 -5px 15px rgba(0, 255, 204, 0.1); }
         .status-item { display: flex; align-items: center; gap: 5px; }
@@ -98,717 +76,729 @@
     </style>
 </head>
 <body>
-
-<canvas id="bg-animation"></canvas>
-
-<div class="ticker-wrap" id="tickerWrapper" style="display: none;">
-    <div id="tickerBox" class="ticker-text"></div>
-</div>
-
-<div class="header-bar">
-    <div id="heroTitle" style="font-weight:bold; font-size:1.1rem; color:#ff007f;">⚓ AÇIKDENİZ NETWORK</div>
-    <div id="userInfo">
-        <div class="auth-grid">
-            <input type="text" id="usernameInput" class="auth-input-style" placeholder="Kullanıcı Adı">
-            <input type="password" id="passwordInput" class="auth-input-style" placeholder="Siber Şifre">
-            <button class="btn" style="padding: 5px 12px; font-size:0.85rem;" onclick="login()">Giriş</button>
-            <button class="btn" style="padding: 5px 12px; font-size:0.85rem; background:#ff007f; color:white;" onclick="register()">Kayıt Ol</button>
-        </div>
-    </div>
-</div>
-
-<div id="profileSection" class="container" style="display:none;">
-    <div class="profile-card">
-        <div>
-            <span style="font-size:1.1rem; font-weight:bold; color:#fff;">👤 Siber Profil: <span id="profileName" style="color:#00ffcc;"></span></span>
-            <div id="profileBadges" style="margin-top:5px;"></div>
-        </div>
-        <div>
-            <button id="selfDeleteBtn" class="btn" style="background:#ff0055; color:white; padding:5px 12px; margin-right:10px; display:none;" onclick="deleteSelfAccount()">Hesabımı Sil</button>
-            <button class="btn" style="background:#333; color:white; padding:5px 12px;" onclick="logout()">Güvenli Çıkış</button>
-        </div>
-    </div>
-</div>
-
-<div id="mainPage" class="container">
-    <h1>Emir Talha Açıkdeniz</h1>
-    <hr style="border: 0; border-top: 1px solid rgba(0, 255, 204, 0.4); margin-bottom: 25px;">
+    <canvas id="bg-animation"></canvas>
     
-    <div id="quizBlock" class="quiz-container"></div>
-
-    <div id="pollBlock" class="poll-container" style="display: none;"></div>
-    
-    <div class="filter-bar">
-        <input type="text" id="searchBox" class="search-input" placeholder="Siber arama: Proje veya kelime yazın..." oninput="loadPosts()">
-        <select id="sortBox" class="sort-select" onchange="loadPosts()">
-            <option value="yeni">📅 En Yeni</option>
-            <option value="eski">⏳ En Eski</option>
-            <option value="populer">🔥 Popülerlik (En Çok Beğeni)</option>
-        </select>
+    <div class="ticker-wrap" id="tickerWrapper" style="display: none;">
+        <div id="tickerBox" class="ticker-text"></div>
     </div>
-
-    <div id="contentList"></div>
-</div>
-
-<div id="detailPage" class="container">
-    <button class="btn back-btn" onclick="navigateToMain()">← Geri Dön</button>
-    <div id="detailContent"></div>
     
-    <div class="comments-section">
-        <h3 style="color: #00ffcc;">💬 Siber Yorumlar</h3>
-        <div id="commentsList"></div>
-        
-        <div id="commentForm" style="margin-top: 20px;">
-            <p id="commentWarning" style="color: #ff0055; font-weight: bold; display: none;">⚠️ Yorum yapabilmek ve rozet kazanmak için giriş yapmalısınız!</p>
-            <div id="commentInputFields" style="display:none;">
-                <div class="form-group">
-                    <textarea id="newCommentText" rows="3" placeholder="Siber yorumunu buraya yaz..."></textarea>
-                </div>
-                <button class="btn" onclick="submitComment()">Yorumu Gönder</button>
+    <div class="header-bar">
+        <div id="heroTitle" style="font-weight:bold; font-size:1.1rem; color:#ff007f;">⚓ AÇIKDENİZ NETWORK</div>
+        <div id="userInfo">
+            <div class="auth-grid">
+                <input type="text" id="usernameInput" class="auth-input-style" placeholder="Kullanıcı Adı">
+                <input type="password" id="passwordInput" class="auth-input-style" placeholder="Siber Şifre">
+                <button class="btn" style="padding: 5px 12px; font-size:0.85rem;" onclick="login()">Giriş</button>
+                <button class="btn" style="padding: 5px 12px; font-size:0.85rem; background:#ff007f; color:white;" onclick="register()">Kayıt Ol</button>
             </div>
         </div>
     </div>
-</div>
-
-<div id="adminPanel" class="container">
-    <h2 style="color: #ff007f; margin-top:0;">⚓ Açıkdeniz Kontrol Paneli</h2>
     
-    <div class="form-group" style="background:rgba(255,0,127,0.05); padding:12px; border:1px solid #ff007f; border-radius:6px;">
-        <label style="color:#ff007f; font-weight:bold;">📢 Siber Duyuru Geç (Akan Yazı):</label>
-        <input type="text" id="adminTickerInput" placeholder="Sitenin en üstünde akacak haberi buraya yazın...">
-        <button class="btn" style="margin-top:8px; background:#ff007f; color:white;" onclick="updateTicker()">Haber Şeridini Güncelle</button>
-        <button class="btn" style="margin-top:8px; background:#333; color:white;" onclick="clearTicker()">Duyuruyu Tamamen Kaldır</button>
+    <div id="profileSection" class="container" style="display:none;">
+        <div class="profile-card">
+            <div>
+                <span style="font-size:1.1rem; font-weight:bold; color:#fff;">👤 Siber Profil: <span id="profileName" style="color:#00ffcc;"></span></span>
+                <div id="profileBadges" style="margin-top:5px;"></div>
+            </div>
+            <div>
+                <button id="selfDeleteBtn" class="btn" style="background:#ff0055; color:white; padding:5px 12px; margin-right:10px; display:none;" onclick="deleteSelfAccount()">Hesabımı Sil</button>
+                <button class="btn" style="background:#333; color:white; padding:5px 12px;" onclick="logout()">Güvenli Çıkış</button>
+            </div>
+        </div>
     </div>
-    <br>
-
-    <div class="form-group"><label>Uygulama / Proje Adı:</label><input type="text" id="postTitle"></div>
-    <div class="form-group"><label>Açıklama / Değişiklik Notları:</label><textarea id="postBody" rows="5"></textarea></div>
-    <div class="form-group"><label>Paylaşılacak Uygulama Dosyası (.apk, .zip vb.):</label><input type="file" id="postFile"></div>
-    <div class="form-group"><label>Proje Kapak Resmi:</label><input type="file" id="postImage" accept="image/*"></div>
-    <button class="btn" onclick="addNewPost()">Sanal Sayfayı Oluştur ve Yayınla</button>
     
-    <div style="margin-top:25px; padding-top:20px; border-top:1px solid #ff007f;">
-        <h4 style="color:#00ffcc; margin-top:0;">🗳️ Yeni Siber Anket Düzenle</h4>
-        <div class="form-group"><input type="text" id="newPollQuestion" placeholder="Anket Sorusu..."></div>
-        <div class="form-group"><input type="text" id="pollOpt1" placeholder="Seçenek 1"></div>
-        <div class="form-group"><input type="text" id="pollOpt2" placeholder="Seçenek 2"></div>
-        <div class="form-group"><input type="text" id="pollOpt3" placeholder="Seçenek 3 (İsteğe Bağlı)"></div>
-        <button class="btn" style="background:#ff007f; color:#fff;" onclick="setupNewPoll()">Anketi Canlıya Al</button>
-        <button class="btn" style="background:#333; color:#fff;" onclick="clearPoll()">Anketi Tamamen Kaldır</button>
+    <div id="mainPage" class="container">
+        <h1>Emir Talha Açıkdeniz</h1>
+        <hr style="border: 0; border-top: 1px solid rgba(0, 255, 204, 0.4); margin-bottom: 25px;">
+        <div id="quizBlock" class="quiz-container"></div>
+        <div id="pollBlock" class="poll-container" style="display: none;"></div>
+        
+        <div class="filter-bar">
+            <input type="text" id="searchBox" class="search-input" placeholder="Siber arama: Proje veya kelime yazın..." oninput="loadPosts()">
+            <select id="sortBox" class="sort-select" onchange="loadPosts()">
+                <option value="yeni">📅 En Yeni</option>
+                <option value="eski">⏳ En Eski</option>
+                <option value="populer">🔥 Popülerlik (En Çok Beğeni)</option>
+            </select>
+        </div>
+        <div id="contentList"></div>
     </div>
-
-    <div style="margin-top:25px; padding-top:20px; border-top:1px solid #ff007f;">
-        <h4 style="color:#ffd700; margin-top:0;">👥 Siber Kullanıcı Yönetim Terminali</h4>
-        <select id="userSelectBox" class="sort-select" style="max-width:300px; display:inline-block; margin-right:15px;"></select>
-        <button class="btn" style="background:#ffd700; color:#000; margin-right: 10px;" onclick="assignHero()">Haftanın Kahramanı Yap</button>
-        <button class="btn" style="background:#ff0055; color:#fff;" onclick="adminDeleteUser()">Hesabı Siber Hattan Sil</button>
-    </div>
-</div>
-
-<div class="status-bar">
-    <div class="status-item"><div class="status-dot"></div> NET_STATUS: ONLINE</div>
-    <div class="status-item">👥 KAYITLI SİBER: <span id="statusUserCount" style="color:#00ffcc; font-weight:bold;">0</span></div>
-    <div class="status-item">📂 PROJELER: <span id="statusProjectCount" style="color:#ff007f; font-weight:bold;">0</span></div>
-    <div class="status-item">👤 AKTİF: <span id="statusCurrentProfile" style="color:#ffd700; font-weight:bold;">ZİYARETÇİ</span></div>
-</div>
-
-<script>
-    let currentUser = localStorage.getItem('siberUser') || "";
-    let isAdmin = localStorage.getItem('siberAdmin') === "true";
-    let activeProjectId = "";
-    let calculatedFileSize = ""; 
-
-    if(!localStorage.getItem('siberUsers')) {
-        localStorage.setItem('siberUsers', JSON.stringify({}));
-    }
-    if(!localStorage.getItem('posts')) {
-        localStorage.setItem('posts', JSON.stringify([]));
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-        let savedTicker = localStorage.getItem('siberTicker');
-        if (savedTicker && savedTicker.trim() !== "") {
-            document.getElementById('tickerBox').innerText = savedTicker;
-            document.getElementById('tickerWrapper').style.display = 'block';
-        } else {
-            document.getElementById('tickerWrapper').style.display = 'none';
-        }
-
-        let fileInput = document.getElementById('postFile');
-        if(fileInput) {
-            fileInput.addEventListener('change', function() {
-                if(this.files && this.files[0]) {
-                    let sizeInBytes = this.files[0].size;
-                    if(sizeInBytes > 1024 * 1024) {
-                        calculatedFileSize = (sizeInBytes / (1024 * 1024)).toFixed(2) + " MB";
-                    } else {
-                        calculatedFileSize = (sizeInBytes / 1024).toFixed(2) + " KB";
-                    }
-                } else { calculatedFileSize = ""; }
-            });
-        }
-
-        updateUserUI();
-        handleRouting();
-        renderPoll();
-        renderQuiz();
-        fillUserSelectBox();
-        updateStatusBar();
-    });
-    window.addEventListener("hashchange", handleRouting);
-
-    function handleRouting() {
-        let hash = window.location.hash;
-        if (hash.startsWith("#proje-")) {
-            activeProjectId = hash.replace("#proje-", "");
-            showProjectDetail(activeProjectId);
-        } else {
-            showMainPage();
-        }
-    }
-
-    /* KULLANICI HESAP SİSTEMİ MANTIĞI */
-    function register() {
-        let u = document.getElementById('usernameInput').value.trim();
-        let p = document.getElementById('passwordInput').value.trim();
-        if(u === "" || p === "") return alert("Kullanıcı adı ve şifre boş bırakılamaz!");
-        if(u.toLowerCase() === "emir") return alert("Bu isim merkez tarafından rezerve edilmiştir!");
-
-        let users = JSON.parse(localStorage.getItem('siberUsers'));
-        if(users[u]) return alert("Bu siber kullanıcı adı zaten alınmış!");
-
-        users[u] = { password: p, badges: [] };
-        localStorage.setItem('siberUsers', JSON.stringify(users));
-        alert("Siber kayıt başarılı! Giriş yapabilirsiniz.");
-        document.getElementById('passwordInput').value = "";
-        updateStatusBar();
-        fillUserSelectBox();
-    }
-
-    function login() {
-        let u = document.getElementById('usernameInput').value.trim();
-        let p = document.getElementById('passwordInput').value.trim();
-        if(u === "" || p === "") return alert("Giriş alanlarını doldurun!");
-
-        if(u === "Emir" && p === "emir12345.54") {
-            isAdmin = true; currentUser = "Emir (Yönetici)";
-            localStorage.setItem('siberAdmin', "true");
-            localStorage.setItem('siberUser', currentUser);
-            alert("Ana siber terminal yetkileri açıldı.");
-        } else {
-            let users = JSON.parse(localStorage.getItem('siberUsers'));
-            if(users[u] && users[u].password === p) {
-                isAdmin = false; currentUser = u;
-                localStorage.setItem('siberAdmin', "false");
-                localStorage.setItem('siberUser', currentUser);
-                alert(`Siber ağa bağlanıldı. Hoş geldin, ${u}`);
-            } else {
-                return alert("Siber Hata: Geçersiz kullanıcı adı veya şifre!");
-            }
-        }
-        document.getElementById('usernameInput').value = "";
-        document.getElementById('passwordInput').value = "";
-        updateUserUI(); loadPosts(); renderPoll(); renderQuiz(); fillUserSelectBox(); updateStatusBar();
-        if(window.location.hash.startsWith("#proje-")) showProjectDetail(activeProjectId);
-    }
-
-    function logout() {
-        currentUser = ""; isAdmin = false;
-        localStorage.removeItem('siberUser'); localStorage.removeItem('siberAdmin');
-        updateUserUI(); loadPosts(); renderPoll(); renderQuiz(); updateStatusBar();
-        if(window.location.hash.startsWith("#proje-")) showProjectDetail(activeProjectId);
-    }
-
-    /* BEĞENİLERİ TEMİZLEME MANTIĞI */
-    function deleteSelfAccount() {
-        if(!currentUser || isAdmin) return;
-        if(confirm("⚠️ Siber hesabını, tüm rozetlerini ve yorumlarını kalıcı olarak imha etmek istediğinden emin misin? Bu işlem geri alınamaz!")) {
-            let users = JSON.parse(localStorage.getItem('siberUsers'));
-            
-            let posts = JSON.parse(localStorage.getItem('posts')) || [];
-            posts.forEach(post => {
-                if(post.likes) {
-                    post.likes = post.likes.filter(u => u !== currentUser);
-                }
-            });
-            localStorage.setItem('posts', JSON.stringify(posts));
-
-            delete users[currentUser];
-            localStorage.setItem('siberUsers', JSON.stringify(users));
-            
-            alert("Siber hesabın ve tüm beğenilerin başarıyla imha edildi. Güvenli çıkış yapılıyor.");
-            logout();
-        }
-    }
-
-    function adminDeleteUser() {
-        let selectedUser = document.getElementById('userSelectBox').value;
-        if(!selectedUser) return alert("Silinecek bir hesap seçilmedi!");
-        if(confirm(`🚨 ${selectedUser} isimli siber hesabı sistemden tamamen silmek istediğine emin misin Kaptan?`)) {
-            let users = JSON.parse(localStorage.getItem('siberUsers'));
-            
-            let posts = JSON.parse(localStorage.getItem('posts')) || [];
-            posts.forEach(post => {
-                if(post.likes) {
-                    post.likes = post.likes.filter(u => u !== selectedUser);
-                }
-            });
-            localStorage.setItem('posts', JSON.stringify(posts));
-
-            delete users[selectedUser];
-            localStorage.setItem('siberUsers', JSON.stringify(users));
-            
-            alert(`${selectedUser} siber hattan ve beğenilerden tamamen temizlendi.`);
-            fillUserSelectBox();
-            updateStatusBar();
-            if(currentUser === selectedUser) { logout(); }
-            else { loadPosts(); if(window.location.hash.startsWith("#proje-")) showProjectDetail(activeProjectId); }
-        }
-    }
-
-    function updateUserUI() {
-        let userInfo = document.getElementById('userInfo');
-        let profileSection = document.getElementById('profileSection');
-        let profileName = document.getElementById('profileName');
-        let profileBadges = document.getElementById('profileBadges');
-        let selfDeleteBtn = document.getElementById('selfDeleteBtn');
-
-        if (currentUser) {
-            userInfo.style.display = 'none';
-            profileSection.style.display = 'block';
-            profileName.innerText = currentUser;
-            
-            selfDeleteBtn.style.display = isAdmin ? 'none' : 'inline-block';
-
-            profileBadges.innerHTML = "";
-            if(isAdmin) {
-                profileBadges.innerHTML += `<span class="badge badge-kahraman">👑 BAŞ GELİŞTİRİCİ</span>`;
-            } else {
-                let users = JSON.parse(localStorage.getItem('siberUsers'));
-                let uData = users[currentUser];
-                if(uData && uData.badges) {
-                    uData.badges.forEach(b => {
-                        if(b === "çırak") profileBadges.innerHTML += `<span class="badge badge-cirak">🛠️ Siber Çırak</span>`;
-                        if(b === "deha") profileBadges.innerHTML += `<span class="badge badge-deha">🧠 Siber Deha</span>`;
-                        if(b === "kahraman") profileBadges.innerHTML += `<span class="badge badge-kahraman">👑 Haftanın Kahramanı</span>`;
-                    });
-                }
-            }
-            document.getElementById('adminPanel').style.display = isAdmin ? 'block' : 'none';
-        } else {
-            userInfo.style.display = 'block';
-            profileSection.style.display = 'none';
-            document.getElementById('adminPanel').style.display = 'none';
-        }
-    }
-
-    function updateStatusBar() {
-        let users = JSON.parse(localStorage.getItem('siberUsers')) || {};
-        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+    
+    <div id="detailPage" class="container">
+        <button class="btn back-btn" onclick="navigateToMain()">← Geri Dön</button>
+        <div id="detailContent"></div>
         
-        let totalUsers = Object.keys(users).length;
-        let totalProjects = posts.length;
-        
-        document.getElementById('statusUserCount').innerText = totalUsers;
-        document.getElementById('statusProjectCount').innerText = totalProjects;
-        document.getElementById('statusCurrentProfile').innerText = currentUser ? currentUser.toUpperCase() : "ZİYARETÇİ";
-    }
-
-    function updateTicker() {
-        let text = document.getElementById('adminTickerInput').value.trim();
-        if(text === "") return;
-        localStorage.setItem('siberTicker', text);
-        document.getElementById('tickerBox').innerText = text;
-        document.getElementById('tickerWrapper').style.display = 'block';
-        document.getElementById('adminTickerInput').value = "";
-        alert("Duyuru siber hatta kalıcı olarak kilitlendi!");
-    }
-
-    function clearTicker() {
-        localStorage.removeItem('siberTicker');
-        document.getElementById('tickerWrapper').style.display = 'none';
-        alert("Duyuru kaldırıldı.");
-    }
-
-    function fillUserSelectBox() {
-        let box = document.getElementById('userSelectBox');
-        if(!box) return;
-        box.innerHTML = "";
-        let users = JSON.parse(localStorage.getItem('siberUsers'));
-        Object.keys(users).forEach(u => {
-            box.innerHTML += `<option value="${u}">${u}</option>`;
-        });
-    }
-
-    function assignHero() {
-        let selectedUser = document.getElementById('userSelectBox').value;
-        if(!selectedUser) return;
-        let users = JSON.parse(localStorage.getItem('siberUsers'));
-        
-        Object.keys(users).forEach(u => {
-            users[u].badges = users[u].badges.filter(b => b !== "kahraman");
-        });
-
-        users[selectedUser].badges.push("kahraman");
-        localStorage.setItem('siberUsers', JSON.stringify(users));
-        alert(`${selectedUser} siber üs tarafından HAFTANIN KAHRAMANI ilan edildi!`);
-        updateUserUI();
-    }
-
-    /* BİLGİ YARIŞMASI MANTIĞI */
-    function renderQuiz() {
-        let qBlock = document.getElementById('quizBlock');
-        if(!currentUser || isAdmin) {
-            qBlock.style.display = 'none'; return;
-        }
-        
-        let users = JSON.parse(localStorage.getItem('siberUsers'));
-        if(users[currentUser] && users[currentUser].badges.includes("deha")) {
-            qBlock.innerHTML = `<h3 style="color:#9b00ff; margin:0;">🎯 Siber Quiz: Tebrikler! Tüm testleri çözüp "Siber Deha" unvanını kazandın! 🧠</h3>`;
-            qBlock.style.display = 'block'; return;
-        }
-
-        qBlock.style.display = 'block';
-        qBlock.innerHTML = `
-            <h3 style="color:#9b00ff; margin-top:0;">🧠 Siber Test: Yeteneğini Kanıtla Rozeti Kap!</h3>
-            <p style="font-size:0.95rem; color:#d399ff;">Soru: Web sitemizde verilerin siber hafada kalıcı saklanmasını sağlayan altyapı mimarisi nedir?</p>
-            <button class="quiz-opt" onclick="checkQuiz(false)">A) Bluetooth Core Network</button>
-            <button class="quiz-opt" onclick="checkQuiz(true)">B) LocalStorage Veri Tabanı Mimarisi</button>
-            <button class="quiz-opt" onclick="checkQuiz(false)">C) Arduino Kısa Devre Sensörü</button>
-        `;
-    }
-
-    function checkQuiz(isCorrect) {
-        if(isCorrect) {
-            let users = JSON.parse(localStorage.getItem('siberUsers'));
-            if(!users[currentUser].badges.includes("deha")) {
-                users[currentUser].badges.push("deha");
-                localStorage.setItem('siberUsers', JSON.stringify(users));
-                alert("Mükemmel siber zeka! Doğru cevap. 'Siber Deha' rozeti profilinize işlendi! 🧠");
-                updateUserUI(); renderQuiz();
-            }
-        } else {
-            alert("Yanlış siber frekans! Ders notlarını inceleyip tekrar dene Kaptan.");
-        }
-    }
-
-    /* ANKET MOTORU MANTIĞI */
-    function renderPoll() {
-        let pollBlock = document.getElementById('pollBlock');
-        let poll = JSON.parse(localStorage.getItem('siberPoll'));
-        
-        if(!poll || !poll.question || poll.question.trim() === "") {
-            pollBlock.style.display = 'none';
-            return;
-        }
-
-        pollBlock.style.display = 'block';
-        let totalVotes = poll.votes.reduce((a, b) => a + b, 0);
-        let hasVoted = poll.voters.includes(currentUser);
-
-        let html = `<h3 style="color:#00ffcc; margin-top:0;">📊 Canlı Anket: ${poll.question}</h3>`;
-        if(!currentUser) html += `<p style="color:#ff0055; font-size:0.9rem; font-weight:bold;">⚠️ Oy kullanabilmek için siber giriş yapmalısınız!</p>`;
-
-        poll.options.forEach((opt, i) => {
-            let votes = poll.votes[i];
-            let percent = totalVotes > 0 ? Math.round((votes / totalVotes) * 100) : 0;
-            if(hasVoted || isAdmin || !currentUser) {
-                html += `
-                    <div style="margin-bottom: 8px;">
-                        <span style="font-size:0.95rem; font-weight:bold; color:#a0aec0;">${opt} (${votes} Oy)</span>
-                        <div class="poll-result-bar">
-                            <div class="poll-progress" style="width: ${percent}%"></div>
-                            <span class="poll-percent">%${percent}</span>
-                        </div>
+        <div class="comments-section">
+            <h3 style="color: #00ffcc;">💬 Siber Yorumlar</h3>
+            <div id="commentsList"></div>
+            <div id="commentForm" style="margin-top: 20px;">
+                <p id="commentWarning" style="color: #ff0055; font-weight: bold; display: none;">⚠️ Yorum yapabilmek ve rozet kazanmak için giriş yapmalısınız!</p>
+                <div id="commentInputFields" style="display:none;">
+                    <div class="form-group">
+                        <textarea id="newCommentText" rows="3" placeholder="Siber yorumunu buraya yaz..."></textarea>
                     </div>
-                `;
-            } else {
-                html += `<button class="poll-option-btn" onclick="castVote(${i})">⚡ ${opt}</button>`;
-            }
-        });
-        pollBlock.innerHTML = html;
-    }
-
-    function castVote(index) {
-        if(!currentUser || isAdmin) return;
-        let poll = JSON.parse(localStorage.getItem('siberPoll'));
-        if(poll.voters.includes(currentUser)) return;
-        poll.votes[index] += 1;
-        poll.voters.push(currentUser);
-        localStorage.setItem('siberPoll', JSON.stringify(poll));
-        renderPoll();
-    }
-
-    function setupNewPoll() {
-        let q = document.getElementById('newPollQuestion').value.trim();
-        let o1 = document.getElementById('pollOpt1').value.trim();
-        let o2 = document.getElementById('pollOpt2').value.trim();
-        let o3 = document.getElementById('pollOpt3').value.trim();
-        if(!q || !o1 || !o2) return alert("Eksik bilgi!");
-        let newPoll = { question: q, options: [o1, o2], votes: [0, 0], voters: [] };
-        if(o3) { newPoll.options.push(o3); newPoll.votes.push(0); }
-        localStorage.setItem('siberPoll', JSON.stringify(newPoll));
-        alert("Yeni anket siber belleğe kilitlendi ve aktif edildi!");
-        renderPoll();
-    }
-
-    function clearPoll() {
-        localStorage.removeItem('siberPoll');
-        document.getElementById('pollBlock').style.display = 'none';
-        alert("Anket kaldırıldı.");
-    }
-
-    /* PROJE PAYLAŞIM VE İNDİRME - BUG DÜZELTİLDİ */
-    function addNewPost() {
-        let title = document.getElementById('postTitle').value.trim();
-        let body = document.getElementById('postBody').value.trim();
-        let fileInput = document.getElementById('postFile');
-        let imageInput = document.getElementById('postImage');
-        if(title === "" || body === "") return alert("Eksik bilgi! Lütfen başlık ve açıklama yazın.");
-
-        let fileData = ""; let fileName = ""; let imageData = ""; let fileSize = calculatedFileSize;
+                    <button class="btn" onclick="submitComment()">Yorumu Gönder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="adminPanel" class="container">
+        <h2 style="color: #ff007f; margin-top:0;">⚓ Açıkdeniz Kontrol Paneli</h2>
+        <div class="form-group" style="background:rgba(255,0,127,0.05); padding:12px; border:1px solid #ff007f; border-radius:6px;">
+            <label style="color:#ff007f; font-weight:bold;">📢 Siber Duyuru Geç (Akan Yazı):</label>
+            <input type="text" id="adminTickerInput" placeholder="Sitenin en üstünde akacak haberi buraya yazın...">
+            <button class="btn" style="margin-top:8px; background:#ff007f; color:white;" onclick="updateTicker()">Haber Şeridini Güncelle</button>
+            <button class="btn" style="margin-top:8px; background:#333; color:white;" onclick="clearTicker()">Duyuruyu Tamamen Kaldır</button>
+        </div>
+        <br>
+        <div class="form-group">
+            <label>Uygulama / Proje Adı:</label>
+            <input type="text" id="postTitle">
+        </div>
+        <div class="form-group">
+            <label>Açıklama / Değişiklik Notları:</label>
+            <textarea id="postBody" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Paylaşılacak Bulut Bağlantısı Linki (Mega, MediaFire vb.):</label>
+            <input type="text" id="postFileLink" placeholder="https://mega.nz/...">
+        </div>
+        <div class="form-group">
+            <label>Dosya Boyutu Raporu (Örn: 15 MB, 512 MB):</label>
+            <input type="text" id="postFileSize" placeholder="512 MB">
+        </div>
+        <div class="form-group">
+            <label>Proje Kapak Resmi (Dosya veya Link Uzantısı):</label>
+            <input type="file" id="postImage" accept="image/*">
+        </div>
+        <button class="btn" onclick="addNewPost()">Sanal Sayfayı Oluştur ve Yayınla</button>
         
-        let proceedWithImage = () => {
-            if (imageInput.files && imageInput.files[0]) {
-                let readerImg = new FileReader();
-                readerImg.onload = function(e) { 
-                    imageData = e.target.result; 
-                    savePost(title, body, fileData, fileName, imageData, fileSize); 
-                };
-                readerImg.readAsDataURL(imageInput.files[0]);
-            } else { 
-                savePost(title, body, fileData, fileName, imageData, fileSize); 
+        <div style="margin-top:25px; padding-top:20px; border-top:1px solid #ff007f;">
+            <h4 style="color:#00ffcc; margin-top:0;">🗳️ Yeni Siber Anket Düzenle</h4>
+            <div class="form-group"><input type="text" id="newPollQuestion" placeholder="Anket Sorusu..."></div>
+            <div class="form-group"><input type="text" id="pollOpt1" placeholder="Seçenek 1"></div>
+            <div class="form-group"><input type="text" id="pollOpt2" placeholder="Seçenek 2"></div>
+            <div class="form-group"><input type="text" id="pollOpt3" placeholder="Seçenek 3 (İsteğe Bağlı)"></div>
+            <button class="btn" style="background:#ff007f; color:#fff;" onclick="setupNewPoll()">Anketi Canlıya Al</button>
+            <button class="btn" style="background:#333; color:#fff;" onclick="clearPoll()">Anketi Tamamen Kaldır</button>
+        </div>
+        
+        <div style="margin-top:25px; padding-top:20px; border-top:1px solid #ff007f;">
+            <h4 style="color:#ffd700; margin-top:0;">👥 Siber Kullanıcı Yönetim Terminali</h4>
+            <select id="userSelectBox" class="sort-select" style="max-width:300px; display:inline-block; margin-right:15px;"></select>
+            <button class="btn" style="background:#ffd700; color:#000; margin-right: 10px;" onclick="assignHero()">Haftanın Kahramanı Yap</button>
+            <button class="btn" style="background:#ff0055; color:#fff;" onclick="adminDeleteUser()">Hesabı Siber Hattan Sil</button>
+        </div>
+    </div>
+    
+    <div class="status-bar">
+        <div class="status-item"><div class="status-dot"></div> NET_STATUS: CLOUD_ONLINE</div>
+        <div class="status-item">👥 KAYITLI SİBER: <span id="statusUserCount" style="color:#00ffcc; font-weight:bold;">0</span></div>
+        <div class="status-item">📂 PROJELER: <span id="statusProjectCount" style="color:#ff007f; font-weight:bold;">0</span></div>
+        <div class="status-item">👤 AKTİF: <span id="statusCurrentProfile" style="color:#ffd700; font-weight:bold;">ZİYARETÇİ</span></div>
+    </div>
+
+    <!-- Firebase Canlı Veri Bağlantı Modülü -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        // ⚠️ BURAYA KENDİ FİREBASE KONSOLUNDAN ALDIĞIN PROJE BİLGİLERİNİ YAPIŞTIR!
+        const firebaseConfig = {
+            apiKey: "AIzaSyA...",
+            authDomain: "projeniz.firebaseapp.com",
+            databaseURL: "https://projeniz-default-rtdb.firebaseio.com",
+            projectId: "projeniz",
+            storageBucket: "projeniz.appspot.com",
+            messagingSenderId: "12345678",
+            appId: "1:12345:web:abcd"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Global Hafıza Eşitleme Değişkenleri
+        let globalPosts = [];
+        let globalUsers = {};
+        let globalPoll = null;
+        let currentUser = localStorage.getItem('siberUser') || "";
+        let isAdmin = localStorage.getItem('siberAdmin') === "true";
+        let activeProjectId = "";
+        let calculatedFileSize = "";
+
+        // SAYFA YÜKLENİRKEN FİREBASE'DEN CANLI VERİ AKIŞINI BAŞLAT
+        window.addEventListener("DOMContentLoaded", () => {
+            // 1. Canlı Haber Şeridi Dinleyicisi
+            onValue(ref(db, 'ticker'), (snapshot) => {
+                let savedTicker = snapshot.val();
+                if (savedTicker && savedTicker.trim() !== "") {
+                    document.getElementById('tickerBox').innerText = savedTicker;
+                    document.getElementById('tickerWrapper').style.display = 'block';
+                } else {
+                    document.getElementById('tickerWrapper').style.display = 'none';
+                }
+            });
+
+            // 2. Canlı Projeler Dinleyicisi
+            onValue(ref(db, 'posts'), (snapshot) => {
+                let data = snapshot.val();
+                globalPosts = [];
+                if (data) {
+                    for (let id in data) {
+                        globalPosts.push(data[id]);
+                    }
+                }
+                // Raporlama ve sıralama fonksiyonlarını tetikle
+                loadPosts();
+                updateStatusBar();
+                if (window.location.hash.startsWith("#proje-")) {
+                    showProjectDetail(activeProjectId);
+                }
+            });
+
+            // 3. Canlı Kullanıcı Dinleyicisi
+            onValue(ref(db, 'users'), (snapshot) => {
+                globalUsers = snapshot.val() || {};
+                updateUserUI();
+                fillUserSelectBox();
+                updateStatusBar();
+                renderQuiz();
+            });
+
+            // 4. Canlı Anket Motoru Dinleyicisi
+            onValue(ref(db, 'poll'), (snapshot) => {
+                globalPoll = snapshot.val();
+                renderPoll();
+            });
+
+            handleRouting();
+        });
+
+        window.addEventListener("hashchange", handleRouting);
+
+        function handleRouting() {
+            let hash = window.location.hash;
+            if (hash.startsWith("#proje-")) {
+                activeProjectId = hash.replace("#proje-", "");
+                showProjectDetail(activeProjectId);
+            } else {
+                showMainPage();
+            }
+        }
+
+        // SİBER KULLANICI UKT SİSTEMLERİ
+        window.register = function() {
+            let u = document.getElementById('usernameInput').value.trim();
+            let p = document.getElementById('passwordInput').value.trim();
+            if(u === "" || p === "") return alert("Kullanıcı adı ve şifre boş bırakılamaz!");
+            if(u.toLowerCase() === "emir") return alert("Bu isim ana merkez tarafından rezerve edilmiştir!");
+            
+            if(globalUsers[u]) return alert("Bu siber kullanıcı adı zaten alınmış!");
+            
+            set(ref(db, 'users/' + u), { password: p, badges: ["yok"] }).then(() => {
+                alert("Siber kayıt bulut sunucusuna işlendi! Giriş yapabilirsiniz.");
+                document.getElementById('passwordInput').value = "";
+            });
+        };
+
+        window.login = function() {
+            let u = document.getElementById('usernameInput').value.trim();
+            let p = document.getElementById('passwordInput').value.trim();
+            if(u === "" || p === "") return alert("Giriş alanlarını doldurun!");
+            
+            if(u === "Emir" && p === "emir12345.54") {
+                isAdmin = true; currentUser = "Emir (Yönetici)";
+                localStorage.setItem('siberAdmin', "true");
+                localStorage.setItem('siberUser', currentUser);
+                alert("Ana siber terminal yetkileri bulut üzerinden açıldı.");
+            } else {
+                if(globalUsers[u] && globalUsers[u].password === p) {
+                    isAdmin = false; currentUser = u;
+                    localStorage.setItem('siberAdmin', "false");
+                    localStorage.setItem('siberUser', currentUser);
+                    alert(`Siber ağ bulutuna bağlanıldı. Hoş geldin, ${u}`);
+                } else {
+                    return alert("Siber Hata: Geçersiz kullanıcı adı veya şifre!");
+                }
+            }
+            document.getElementById('usernameInput').value = "";
+            document.getElementById('passwordInput').value = "";
+            updateUserUI(); loadPosts(); renderPoll(); renderQuiz(); updateStatusBar();
+        };
+
+        window.logout = function() {
+            currentUser = ""; isAdmin = false;
+            localStorage.removeItem('siberUser'); localStorage.removeItem('siberAdmin');
+            updateUserUI(); loadPosts(); renderPoll(); renderQuiz(); updateStatusBar();
+            if(window.location.hash.startsWith("#proje-")) showProjectDetail(activeProjectId);
+        };
+
+        window.deleteSelfAccount = function() {
+            if(!currentUser || isAdmin) return;
+            if(confirm("⚠️ Siber hesabını kalıcı olarak imha etmek istediğinden emin misin? Bu işlem geri alınamaz!")) {
+                // Beğenileri temizle
+                globalPosts.forEach(post => {
+                    if(post.likes) {
+                        let updatedLikes = post.likes.filter(u => u !== currentUser);
+                        set(ref(db, `posts/${post.id}/likes`), updatedLikes);
+                    }
+                });
+                remove(ref(db, 'users/' + currentUser)).then(() => {
+                    alert("Hesabın bulut sisteminden silindi.");
+                    logout();
+                });
             }
         };
 
-        if (fileInput.files && fileInput.files[0]) {
-            let file = fileInput.files[0]; 
-            fileName = file.name;
-            let readerFile = new FileReader();
-            readerFile.onload = function(e) { 
-                fileData = e.target.result; 
-                proceedWithImage(); 
-            };
-            readerFile.readAsDataURL(file);
-        } else { 
-            proceedWithImage(); 
+        window.adminDeleteUser = function() {
+            let selectedUser = document.getElementById('userSelectBox').value;
+            if(!selectedUser) return alert("Silinecek bir hesap seçilmedi!");
+            if(confirm(`🚨 ${selectedUser} isimli siber hesabı sistemden tamamen silmek istediğine emin misin Kaptan?`)) {
+                globalPosts.forEach(post => {
+                    if(post.likes) {
+                        let updatedLikes = post.likes.filter(u => u !== selectedUser);
+                        set(ref(db, `posts/${post.id}/likes`), updatedLikes);
+                    }
+                });
+                remove(ref(db, 'users/' + selectedUser)).then(() => {
+                    alert(`${selectedUser} siber hattan tamamen temizlendi.`);
+                });
+            }
+        };
+
+        function updateUserUI() {
+            let userInfo = document.getElementById('userInfo');
+            let profileSection = document.getElementById('profileSection');
+            let profileName = document.getElementById('profileName');
+            let profileBadges = document.getElementById('profileBadges');
+            let selfDeleteBtn = document.getElementById('selfDeleteBtn');
+            
+            if (currentUser) {
+                userInfo.style.display = 'none';
+                profileSection.style.display = 'block';
+                profileName.innerText = currentUser;
+                selfDeleteBtn.style.display = isAdmin ? 'none' : 'inline-block';
+                profileBadges.innerHTML = "";
+                
+                if(isAdmin) {
+                    profileBadges.innerHTML += `<span class="badge badge-kahraman">👑 BAŞ GELİŞTİRİCİ</span>`;
+                } else {
+                    let uData = globalUsers[currentUser];
+                    if(uData && uData.badges) {
+                        uData.badges.forEach(b => {
+                            if(b === "çırak") profileBadges.innerHTML += `<span class="badge badge-cirak">🛠️ Siber Çırak</span>`;
+                            if(b === "deha") profileBadges.innerHTML += `<span class="badge badge-deha">🧠 Siber Deha</span>`;
+                            if(b === "kahraman") profileBadges.innerHTML += `<span class="badge badge-kahraman">👑 Haftanın Kahramanı</span>`;
+                        });
+                    }
+                }
+                document.getElementById('adminPanel').style.display = isAdmin ? 'block' : 'none';
+            } else {
+                userInfo.style.display = 'block';
+                profileSection.style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'none';
+            }
         }
-    }
 
-    function savePost(title, body, fileData, fileName, imageData, fileSize) {
-        let posts = JSON.parse(localStorage.getItem('posts')) || [];
-        let newPost = { id: Date.now().toString(), title, body, fileData, fileName, image: imageData, fileSize: fileSize, likes: [], comments: [], downloads: 0 };
-        posts.unshift(newPost);
-        localStorage.setItem('posts', JSON.stringify(posts));
-        
-        // Formları temizle
-        document.getElementById('postTitle').value = "";
-        document.getElementById('postBody').value = "";
-        document.getElementById('postFile').value = "";
-        document.getElementById('postImage').value = "";
-        calculatedFileSize = "";
+        function updateStatusBar() {
+            let totalUsers = Object.keys(globalUsers).length;
+            let totalProjects = globalPosts.length;
+            document.getElementById('statusUserCount').innerText = totalUsers;
+            document.getElementById('statusProjectCount').innerText = totalProjects;
+            document.getElementById('statusCurrentProfile').innerText = currentUser ? currentUser.toUpperCase() : "ZİYARETÇİ";
+        }
 
-        alert("Yeni siber proje ağda yayınlandı!");
-        loadPosts();
-        updateStatusBar();
-    }
+        window.updateTicker = function() {
+            let text = document.getElementById('adminTickerInput').value.trim();
+            if(text === "") return;
+            set(ref(db, 'ticker'), text).then(() => {
+                document.getElementById('adminTickerInput').value = "";
+                alert("Duyuru siber hatta kilitlendi!");
+            });
+        };
 
-    function loadPosts() {
-        let contentList = document.getElementById('contentList'); 
-        if(!contentList) return;
-        contentList.innerHTML = "";
-        
-        let posts = JSON.parse(localStorage.getItem('posts')) || [];
-        let searchQuery = document.getElementById('searchBox').value.toLowerCase().trim();
-        let sortBy = document.getElementById('sortBox').value;
+        window.clearTicker = function() {
+            remove(ref(db, 'ticker')).then(() => {
+                alert("Duyuru kaldırıldı.");
+            });
+        };
 
-        if(searchQuery !== "") posts = posts.filter(post => post.title.toLowerCase().includes(searchQuery) || post.body.toLowerCase().includes(searchQuery));
-        if (sortBy === "yeni") posts.sort((a, b) => b.id - a.id);
-        else if (sortBy === "eski") posts.sort((a, b) => a.id - b.id);
-        else if (sortBy === "populer") posts.sort((a, b) => (b.likes?b.likes.length:0) - (a.likes?a.likes.length:0));
+        function fillUserSelectBox() {
+            let box = document.getElementById('userSelectBox');
+            if(!box) return;
+            box.innerHTML = "";
+            Object.keys(globalUsers).forEach(u => {
+                box.innerHTML += `<option value="${u}">${u}</option>`;
+            });
+        }
 
-        posts.forEach(post => {
-            let imgHtml = post.image ? `<img src="${post.image}">` : "";
-            let deleteBtnHtml = isAdmin ? `<button class="delete-btn" style="display:block;" onclick="deletePost('${post.id}', event)">Projeyi Sil</button>` : "";
-            contentList.innerHTML += `
-                <div class="project-card" onclick="navigateToProject('${post.id}')">
+        window.assignHero = function() {
+            let selectedUser = document.getElementById('userSelectBox').value;
+            if(!selectedUser) return;
+            
+            Object.keys(globalUsers).forEach(u => {
+                let cleanBadges = (globalUsers[u].badges || []).filter(b => b !== "kahraman");
+                set(ref(db, `users/${u}/badges`), cleanBadges);
+            });
+
+            let activeBadges = globalUsers[selectedUser].badges || [];
+            if(!activeBadges.includes("kahraman")) activeBadges.push("kahraman");
+            set(ref(db, `users/${selectedUser}/badges`), activeBadges).then(() => {
+                alert(`${selectedUser} siber üs tarafından HAFTANIN KAHRAMANI ilan edildi!`);
+            });
+        };
+
+        // BİLGİ YARIŞMASI MANTIĞI
+        window.renderQuiz = function() {
+            let qBlock = document.getElementById('quizBlock');
+            if(!currentUser || isAdmin) { qBlock.style.display = 'none'; return; }
+            
+            let uData = globalUsers[currentUser];
+            if(uData && uData.badges && uData.badges.includes("deha")) {
+                qBlock.innerHTML = `<h3 style="color:#9b00ff; margin:0;">🎯 Siber Quiz: Tebrikler! Tüm testleri çözüp "Siber Deha" unvanını kazandın! 🧠</h3>`;
+                qBlock.style.display = 'block'; return;
+            }
+            qBlock.style.display = 'block';
+            qBlock.innerHTML = `<h3 style="color:#9b00ff; margin-top:0;">🧠 Siber Test: Yeteneğini Kanıtla Rozeti Kap!</h3>
+            <p style="font-size:0.95rem; color:#d399ff;">Soru: Web sitemizde verilerin global ağda anlık eşitlenmesini sağlayan bulut mimari altyapısı nedir?</p>
+            <button class="quiz-opt" onclick="checkQuiz(false)">A) LocalStorage Yerel Disk Sistemi</button>
+            <button class="quiz-opt" onclick="checkQuiz(true)">B) Firebase Realtime Database Bulut Teknolojisi</button>
+            <button class="quiz-opt" onclick="checkQuiz(false)">C) Arduino Bluetooth Alıcı Frekansı</button>`;
+        };
+
+        window.checkQuiz = function(isCorrect) {
+            if(isCorrect) {
+                let activeBadges = globalUsers[currentUser].badges || [];
+                if(!activeBadges.includes("deha")) activeBadges.push("deha");
+                set(ref(db, `users/${currentUser}/badges`), activeBadges).then(() => {
+                    alert("Mükemmel siber zeka! Doğru cevap. 'Siber Deha' rozeti profilinize işlendi! 🧠");
+                });
+            } else {
+                alert("Yanlış siber frekans! Ders notlarını inceleyip tekrar dene Kaptan.");
+            }
+        };
+
+        // ANKET MOTORU
+        window.renderPoll = function() {
+            let pollBlock = document.getElementById('pollBlock');
+            if(!globalPoll || !globalPoll.question || globalPoll.question.trim() === "") {
+                pollBlock.style.display = 'none'; return;
+            }
+            pollBlock.style.display = 'block';
+            let votes = globalPoll.votes || [];
+            let voters = globalPoll.voters || [];
+            let totalVotes = votes.reduce((a, b) => a + b, 0);
+            let hasVoted = voters.includes(currentUser);
+            
+            let html = `<h3 style="color:#00ffcc; margin-top:0;">📊 Canlı Anket: ${globalPoll.question}</h3>`;
+            if(!currentUser) html += `<p style="color:#ff0055; font-size:0.9rem; font-weight:bold;">⚠️ Oy kullanabilmek için siber giriş yapmalısınız!</p>`;
+            
+            globalPoll.options.forEach((opt, i) => {
+                let currentOptVotes = votes[i] || 0;
+                let percent = totalVotes > 0 ? Math.round((currentOptVotes / totalVotes) * 100) : 0;
+                if(hasVoted || isAdmin || !currentUser) {
+                    html += `<div style="margin-bottom: 8px;"><span style="font-size:0.95rem; font-weight:bold; color:#a0aec0;">${opt} (${currentOptVotes} Oy)</span>
+                    <div class="poll-result-bar"><div class="poll-progress" style="width: ${percent}%"></div><span class="poll-percent">%${percent}</span></div></div>`;
+                } else {
+                    html += `<button class="poll-option-btn" onclick="castVote(${i})">⚡ ${opt}</button>`;
+                }
+            });
+            pollBlock.innerHTML = html;
+        };
+
+        window.castVote = function(index) {
+            if(!currentUser || isAdmin) return;
+            let votes = globalPoll.votes || [];
+            let voters = globalPoll.voters || [];
+            if(voters.includes(currentUser)) return;
+            
+            votes[index] = (votes[index] || 0) + 1;
+            voters.push(currentUser);
+            
+            update(ref(db, 'poll'), { votes: votes, voters: voters });
+        };
+
+        window.setupNewPoll = function() {
+            let q = document.getElementById('newPollQuestion').value.trim();
+            let o1 = document.getElementById('pollOpt1').value.trim();
+            let o2 = document.getElementById('pollOpt2').value.trim();
+            let o3 = document.getElementById('pollOpt3').value.trim();
+            if(!q || !o1 || !o2) return alert("Eksik bilgi!");
+            
+            let opts = [o1, o2]; if(o3) opts.push(o3);
+            let vts = opts.map(() => 0);
+            
+            set(ref(db, 'poll'), { question: q, options: opts, votes: vts, voters: ["sistem"] }).then(() => {
+                alert("Yeni anket siber bulut belleğe kilitlendi ve aktif edildi!");
+            });
+        };
+
+        window.clearPoll = function() {
+            remove(ref(db, 'poll')).then(() => { alert("Anket temizlendi."); });
+        };
+
+        // PROJE PAYLAŞIM VE BULUT TABANLI DOSYA KONTROLÜ
+        window.addNewPost = function() {
+            let title = document.getElementById('postTitle').value.trim();
+            let body = document.getElementById('postBody').value.trim();
+            let fileLink = document.getElementById('postFileLink').value.trim();
+            let fileSize = document.getElementById('postFileSize').value.trim() || "Bilinmiyor";
+            let imageInput = document.getElementById('postImage');
+            
+            if(title === "" || body === "") return alert("Eksik bilgi! Lütfen başlık ve açıklama yazın.");
+            
+            let id = Date.now().toString();
+            let imageData = "";
+
+            if (imageInput.files && imageInput.files[0]) {
+                let readerImg = new FileReader();
+                readerImg.onload = function(e) {
+                    imageData = e.target.result;
+                    savePostToCloud(id, title, body, fileLink, fileSize, imageData);
+                };
+                readerImg.readAsDataURL(imageInput.files[0]);
+            } else {
+                savePostToCloud(id, title, body, fileLink, fileSize, imageData);
+            }
+        };
+
+        function savePostToCloud(id, title, body, fileLink, fileSize, imageData) {
+            let newPost = {
+                id: id,
+                title: title,
+                body: body,
+                fileLink: fileLink,
+                fileSize: fileSize,
+                image: imageData,
+                likes: ["sistem"],
+                comments: [{user: "Açıkdeniz Bot", text: "Siber proje istasyonu aktif edildi.", pinned: false}],
+                downloads: 0
+            };
+
+            set(ref(db, 'posts/' + id), newPost).then(() => {
+                document.getElementById('postTitle').value = "";
+                document.getElementById('postBody').value = "";
+                document.getElementById('postFileLink').value = "";
+                document.getElementById('postFileSize').value = "";
+                document.getElementById('postImage').value = "";
+                alert("Yeni siber proje küresel ağda başarıyla yayınlandı!");
+                navigateToMain();
+            });
+        }
+
+        window.loadPosts = function() {
+            let contentList = document.getElementById('contentList');
+            if(!contentList) return;
+            contentList.innerHTML = "";
+            
+            let searchQuery = document.getElementById('searchBox').value.toLowerCase().trim();
+            let sortBy = document.getElementById('sortBox').value;
+            
+            let displayPosts = [...globalPosts];
+
+            if(searchQuery !== "") {
+                displayPosts = displayPosts.filter(post => post.title.toLowerCase().includes(searchQuery) || post.body.toLowerCase().includes(searchQuery));
+            }
+
+            if (sortBy === "yeni") displayPosts.sort((a, b) => b.id - a.id);
+            else if (sortBy === "eski") displayPosts.sort((a, b) => a.id - b.id);
+            else if (sortBy === "populer") displayPosts.sort((a, b) => ((b.likes || []).length) - ((a.likes || []).length));
+
+            displayPosts.forEach(post => {
+                let imgHtml = post.image ? `<img src="${post.image}">` : "";
+                let deleteBtnHtml = isAdmin ? `<button class="delete-btn" style="display:block;" onclick="deletePost('${post.id}', event)">Projeyi Sil</button>` : "";
+                let lCount = (post.likes || []).filter(l => l !== "sistem").length;
+                let cCount = (post.comments || []).length;
+
+                contentList.innerHTML += `<div class="project-card" onclick="navigateToProject('${post.id}')">
                     ${deleteBtnHtml}
                     <h2>${post.title}</h2>
                     <p>${post.body.substring(0, 150)}...</p>
                     ${imgHtml}
-                    <div class="card-actions" style="margin-top:10px;"><span>❤️ ${post.likes?post.likes.length:0} Beğeni</span> <span>💬 ${post.comments?post.comments.length:0} Yorum</span></div>
-                </div>
-            `;
-        });
-    }
+                    <div class="card-actions" style="margin-top:10px;">
+                        <span>❤️ ${lCount} Beğeni</span> | <span>💬 ${cCount} Yorum</span>
+                    </div>
+                </div>`;
+            });
+        };
 
-    function navigateToProject(id) { window.location.hash = "proje-" + id; }
-    function navigateToMain() { window.location.hash = ""; }
-    function showMainPage() { document.getElementById('detailPage').style.display = 'none'; document.getElementById('mainPage').style.display = 'block'; loadPosts(); updateStatusBar(); }
-
-    function showProjectDetail(id) {
-        let posts = JSON.parse(localStorage.getItem('posts')) || [];
-        let post = posts.find(p => p.id === id); if (!post) { navigateToMain(); return; }
-
-        document.getElementById('mainPage').style.display = 'none';
-        document.getElementById('detailPage').style.display = 'block';
-
-        let imgHtml = post.image ? `<img src="${post.image}">` : "";
-        let downloadHtml = "";
-        if(post.fileData && post.fileName) {
-            let sizeLabel = post.fileSize ? `<span class="size-badge">${post.fileSize}</span>` : "";
-            downloadHtml = `
-                <br>
-                <button onclick="downloadEmbeddedFile('${post.id}')" class="download-btn">📥 ${post.fileName} İndir</button>
-                ${sizeLabel}
-                <span id="adminCounter" class="admin-counter" style="${isAdmin ? 'display:inline-block;' : 'display:none;'}">📊 İndirme Sayısı: ${post.downloads || 0}</span>
-            `;
+        window.navigateToProject = function(id) { window.location.hash = "proje-" + id; };
+        window.navigateToMain = function() { window.location.hash = ""; };
+        
+        function showMainPage() {
+            document.getElementById('detailPage').style.display = 'none';
+            document.getElementById('mainPage').style.display = 'block';
+            loadPosts();
         }
 
-        document.getElementById('detailContent').innerHTML = `
-            <h1 style="color: #ff007f; text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);">${post.title}</h1>
-            <div style="margin-bottom:15px;"><button class="btn" style="background:rgba(0,255,204,0.1); border:1px solid #00ffcc; color:#00ffcc;" onclick="likeProject('${post.id}')">❤️ <span id="likeCountDetail">${post.likes?post.likes.length:0}</span> Beğen</button></div>
+        function showProjectDetail(id) {
+            let post = globalPosts.find(p => p.id === id);
+            if (!post) { navigateToMain(); return; }
+            
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('detailPage').style.display = 'block';
+            
+            let imgHtml = post.image ? `<img src="${post.image}">` : "";
+            let downloadHtml = "";
+            
+            if(post.fileLink) {
+                let sizeLabel = post.fileSize ? `<span class="size-badge">${post.fileSize}</span>` : "";
+                downloadHtml = `<br><a href="${post.fileLink}" target="_blank" onclick="registerDownload('${post.id}')" class="download-btn">📥 Proje Dosyasını İndir / İncele</a>${sizeLabel}
+                <span id="adminCounter" class="admin-counter" style="${isAdmin ? 'display:inline-block;' : 'display:none;'}">📊 Tıklanma Sayısı: ${post.downloads || 0}</span>`;
+            }
+
+            let pureLikes = (post.likes || []).filter(l => l !== "sistem").length;
+
+            document.getElementById('detailContent').innerHTML = `<h1 style="color: #ff007f; text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);">${post.title}</h1>
+            <div style="margin-bottom:15px;">
+                <button class="btn" style="background:rgba(0,255,204,0.1); border:1px solid #00ffcc; color:#00ffcc;" onclick="likeProject('${post.id}')">❤️ <span id="likeCountDetail">${pureLikes}</span> Beğen</button>
+            </div>
             <hr style="border: 0; border-top: 1px solid rgba(255, 0, 127, 0.3); margin-bottom: 20px;">
             <p style="color: #e2e8f0; font-size: 1.1rem; white-space: pre-line;">${post.body}</p>
-            ${imgHtml} ${downloadHtml}
-        `;
+            ${imgHtml} ${downloadHtml}`;
 
-        document.getElementById('commentInputFields').style.display = currentUser ? 'block' : 'none';
-        document.getElementById('commentWarning').style.display = currentUser ? 'none' : 'block';
-        loadComments(post);
-    }
+            document.getElementById('commentInputFields').style.display = currentUser ? 'block' : 'none';
+            document.getElementById('commentWarning').style.display = currentUser ? 'none' : 'block';
+            loadComments(post);
+        }
 
-    function downloadEmbeddedFile(id) {
-        let posts = JSON.parse(localStorage.getItem('posts')) || [];
-        let postIndex = posts.findIndex(p => p.id === id); if(postIndex === -1 || !posts[postIndex].fileData) return;
+        window.registerDownload = function(id) {
+            let post = globalPosts.find(p => p.id === id);
+            if(!post) return;
+            let currentDownloads = (post.downloads || 0) + 1;
+            set(ref(db, `posts/${id}/downloads`), currentDownloads);
+        };
 
-        if(!posts[postIndex].downloads) posts[postIndex].downloads = 0;
-        posts[postIndex].downloads += 1;
-        localStorage.setItem('posts', JSON.stringify(posts));
-        if(isAdmin && document.getElementById('adminCounter')) document.getElementById('adminCounter').innerText = `📊 İndirme Sayısı: ${posts[postIndex].downloads}`;
-
-        let a = document.createElement("a"); a.href = posts[postIndex].fileData; a.download = posts[postIndex].fileName;
-        document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    }
-
-    function likeProject(id) {
-        if(!currentUser) return alert("Giriş yapmalısınız!");
-        let posts = JSON.parse(localStorage.getItem('posts')) || [];
-        let postIndex = posts.findIndex(p => p.id === id); if(postIndex === -1) return;
-
-        if(!posts[postIndex].likes) posts[postIndex].likes = [];
-        if(posts[postIndex].likes.includes(currentUser)) posts[postIndex].likes = posts[postIndex].likes.filter(u => u !== currentUser);
-        else posts[postIndex].likes.push(currentUser);
-
-        localStorage.setItem('posts', JSON.stringify(posts));
-        document.getElementById('likeCountDetail').innerText = posts[postIndex].likes.length;
-    }
-
-    /* YORUM SİSTEMİ MANTIĞI */
-    function loadComments(post) {
-        let list = document.getElementById('commentsList'); list.innerHTML = "";
-        if(!post.comments || post.comments.length === 0) { list.innerHTML = `<p style="color:#718096; font-style:italic;">Henüz yorum yapılmamış.</p>`; return; }
-        
-        let sortedComments = [...post.comments].map((c, idx) => ({...c, originalIndex: idx}));
-        sortedComments.sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
-
-        sortedComments.forEach((c) => {
-            let delBtnHtml = isAdmin ? `<button class="comment-delete-btn" style="display:block;" onclick="deleteComment(${c.originalIndex})">Yorumu Sil</button>` : "";
-            let pinBtnHtml = isAdmin ? `<button class="pin-btn" style="display:inline-block;" onclick="togglePinComment(${c.originalIndex})">${c.pinned ? '📌 Pini Kaldır' : '📌 Pinle'}</button>` : "";
-            let pinClass = c.pinned ? "comment-pinned" : "";
-            let badgeText = "";
+        window.likeProject = function(id) {
+            if(!currentUser) return alert("Siber ağa giriş yapmalısınız!");
+            let post = globalPosts.find(p => p.id === id);
+            if(!post) return;
             
-            if(c.user.includes("Yönetici")) badgeText = `<span class="badge badge-kahraman">👑 BAŞ GELİŞTİRİCİ</span>`;
-            else {
-                let users = JSON.parse(localStorage.getItem('siberUsers'));
-                if(users[c.user] && users[c.user].badges) {
-                    if(users[c.user].badges.includes("kahraman")) badgeText += `<span class="badge badge-kahraman">👑 Kahraman</span>`;
-                    if(users[c.user].badges.includes("deha")) badgeText += `<span class="badge badge-deha">🧠 Deha</span>`;
-                    if(users[c.user].badges.includes("çırak")) badgeText += `<span class="badge badge-cirak">🛠️ Çırak</span>`;
-                }
+            let activeLikes = post.likes || [];
+            if(activeLikes.includes(currentUser)) {
+                activeLikes = activeLikes.filter(u => u !== currentUser);
+            } else {
+                activeLikes.push(currentUser);
+            }
+            set(ref(db, `posts/${id}/likes`), activeLikes);
+        };
+
+        // YORUM SİSTEMİ MERKEZİ
+        function loadComments(post) {
+            let list = document.getElementById('commentsList'); list.innerHTML = "";
+            let comments = post.comments || [];
+            if(comments.length === 0) {
+                list.innerHTML = `<p style="color:#718096; font-style:italic;">Henüz yorum yapılmamış.</p>`; return;
             }
 
-            list.innerHTML += `
-                <div class="comment-box ${pinClass}">
-                    ${delBtnHtml}
+            let sortedComments = [...comments].map((c, idx) => ({...c, originalIndex: idx}));
+            sortedComments.sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
+
+            sortedComments.forEach((c) => {
+                let delBtnHtml = isAdmin ? `<button class="comment-delete-btn" style="display:block;" onclick="deleteComment(${c.originalIndex})">Yorumu Sil</button>` : "";
+                let pinBtnHtml = isAdmin ? `<button class="pin-btn" style="display:inline-block;" onclick="togglePinComment(${c.originalIndex})">${c.pinned ? '📌 Pini Kaldır' : '📌 Pinle'}</button>` : "";
+                let pinClass = c.pinned ? "comment-pinned" : "";
+                let badgeText = "";
+
+                if(c.user.includes("Yönetici")) {
+                    badgeText = `<span class="badge badge-kahraman">👑 BAŞ GELİŞTİRİCİ</span>`;
+                } else {
+                    let uData = globalUsers[c.user];
+                    if(uData && uData.badges) {
+                        if(uData.badges.includes("kahraman")) badgeText += `<span class="badge badge-kahraman">👑 Kahraman</span>`;
+                        if(uData.badges.includes("deha")) badgeText += `<span class="badge badge-deha">🧠 Deha</span>`;
+                        if(uData.badges.includes("çırak")) badgeText += `<span class="badge badge-cirak">🛠️ Çırak</span>`;
+                    }
+                }
+                list.innerHTML += `<div class="comment-box ${pinClass}">${delBtnHtml}
                     <div class="comment-user">👤 ${c.user} ${badgeText} ${pinBtnHtml}</div>
                     <div class="comment-text">${c.text}</div>
-                </div>
-            `;
-        });
-    }
+                </div>`;
+            });
+        }
 
-    function submitComment() {
-        let text = document.getElementById('newCommentText').value.trim(); if(text === "") return;
-        let posts = JSON.parse(localStorage.getItem('posts')) || [];
-        let postIndex = posts.findIndex(p => p.id === activeProjectId); if(postIndex === -1) return;
+        window.submitComment = function() {
+            let text = document.getElementById('newCommentText').value.trim();
+            if(text === "") return;
+            
+            let post = globalPosts.find(p => p.id === activeProjectId);
+            if(!post) return;
+            
+            let activeComments = post.comments || [];
+            activeComments.push({ user: currentUser, text: text, pinned: false });
+            
+            set(ref(db, `posts/${activeProjectId}/comments`), activeComments).then(() => {
+                document.getElementById('newCommentText').value = "";
+                
+                // İlk Yorum Rozeti Verme Kontrolü
+                if(!isAdmin) {
+                    let activeBadges = globalUsers[currentUser].badges || [];
+                    if(!activeBadges.includes("çırak")) {
+                        activeBadges.push("çırak");
+                        set(ref(db, `users/${currentUser}/badges`), activeBadges).then(() => {
+                            alert("İlk siber yorumunuz için 'Siber Çırak' rozeti kazandınız! 🛠️");
+                        });
+                    }
+                }
+            });
+        };
 
-        if(!posts[postIndex].comments) posts[postIndex].comments = [];
-        posts[postIndex].comments.push({ user: currentUser, text: text, pinned: false });
-        
-        if(!isAdmin) {
-            let users = JSON.parse(localStorage.getItem('siberUsers'));
-            if(!users[currentUser].badges.includes("çırak")) {
-                users[currentUser].badges.push("çırak");
-                localStorage.setItem('siberUsers', JSON.stringify(users));
-                alert("İlk siber yorumunuz için 'Siber Çırak' rozeti kazandınız! 🛠️");
-                updateUserUI();
+        window.togglePinComment = function(idx) {
+            let post = globalPosts.find(p => p.id === activeProjectId);
+            if(!post) return;
+            post.comments[idx].pinned = !post.comments[idx].pinned;
+            set(ref(db, `posts/${activeProjectId}/comments`), post.comments);
+        };
+
+        window.deleteComment = function(commentIndex) {
+            if(!confirm("Yorum silinsin mi?")) return;
+            let post = globalPosts.find(p => p.id === activeProjectId);
+            if(post && post.comments) {
+                post.comments.splice(commentIndex, 1);
+                set(ref(db, `posts/${activeProjectId}/comments`), post.comments);
             }
-        }
+        };
 
-        localStorage.setItem('posts', JSON.stringify(posts));
-        document.getElementById('newCommentText').value = "";
-        loadComments(posts[postIndex]);
-    }
-
-    function togglePinComment(idx) {
-        let posts = JSON.parse(localStorage.getItem('posts')) || [];
-        let postIndex = posts.findIndex(p => p.id === activeProjectId);
-        if(postIndex === -1) return;
-
-        posts[postIndex].comments[idx].pinned = !posts[postIndex].comments[idx].pinned;
-        localStorage.setItem('posts', JSON.stringify(posts));
-        loadComments(posts[postIndex]);
-    }
-
-    function deleteComment(commentIndex) {
-        if(!confirm("Yorum silinsin mi?")) return;
-        let posts = JSON.parse(localStorage.getItem('posts')) || [];
-        let postIndex = posts.findIndex(p => p.id === activeProjectId);
-        if(postIndex !== -1 && posts[postIndex].comments) {
-            posts[postIndex].comments.splice(commentIndex, 1);
-            localStorage.setItem('posts', JSON.stringify(posts));
-            loadComments(posts[postIndex]);
-        }
-    }
-
-    function deletePost(id, event) {
-        event.stopPropagation();
-        if(confirm("Projeyi silmek istiyor musun?")) {
-            let posts = JSON.parse(localStorage.getItem('posts')) || [];
-            posts = posts.filter(p => p.id !== id); localStorage.setItem('posts', JSON.stringify(posts));
-            loadPosts(); navigateToMain(); updateStatusBar();
-        }
-    }
-
-    // Arka Plan Animasyonu
-    const canvas = document.getElementById('bg-animation'); const ctx = canvas.getContext('2d');
-    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    resizeCanvas(); window.addEventListener('resize', resizeCanvas);
-    const dots = [];
-    for (let i = 0; i < 60; i++) dots.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * 0.8, vy: (Math.random() - 0.5) * 0.8, radius: Math.random() * 2 + 1 });
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = '#00ffcc';
-        dots.forEach(dot => { dot.x += dot.vx; dot.y += dot.vy; if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1; if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1; ctx.beginPath(); ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2); ctx.fill(); });
-        for (let i = 0; i < 60; i++) {
-            for (let j = i + 1; j < 60; j++) {
-                const dist = Math.hypot(dots[i].x - dots[j].x, dots[i].y - dots[j].y);
-                if (dist < 120) { ctx.strokeStyle = `rgba(0, 255, 204, ${1 - dist / 120 * 0.15})`; ctx.lineWidth = 0.5; ctx.beginPath(); ctx.moveTo(dots[i].x, dots[i].y); ctx.lineTo(dots[j].x, dots[j].y); ctx.stroke(); }
+        window.deletePost = function(id, event) {
+            event.stopPropagation();
+            if(confirm("Projeyi küresel bulut ağından silmek istiyor musun?")) {
+                remove(ref(db, 'posts/' + id)).then(() => {
+                    alert("Proje silindi.");
+                    navigateToMain();
+                });
             }
+        };
+
+        // Arka Plan Siber Matris Animasyonu
+        const canvas = document.getElementById('bg-animation');
+        const ctx = canvas.getContext('2d');
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+
+        const dots = [];
+        for (let i = 0; i < 60; i++) dots.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * 0.8, vy: (Math.random() - 0.5) * 0.8, radius: Math.random() * 2 + 1 });
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = '#00ffcc';
+            dots.forEach(dot => {
+                dot.x += dot.vx; dot.y += dot.vy;
+                if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
+                if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
+                ctx.beginPath(); ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2); ctx.fill();
+            });
+            for (let i = 0; i < 60; i++) {
+                for (let j = i + 1; j < 60; j++) {
+                    const dist = Math.hypot(dots[i].x - dots[j].x, dots[i].y - dots[j].y);
+                    if (dist < 120) {
+                        ctx.strokeStyle = `rgba(0, 255, 204, ${1 - dist / 120 * 0.15})`; ctx.lineWidth = 0.5;
+                        ctx.beginPath(); ctx.moveTo(dots[i].x, dots[i].y); ctx.lineTo(dots[j].x, dots[j].y); ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
         }
-        requestAnimationFrame(animate);
-    }
-    animate();
-</script>
+        animate();
+    </script>
 </body>
 </html>
